@@ -1,0 +1,64 @@
+All the required Text for this portfolio
+Fonts
+
+----------------------------------------------
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&family=Pacifico&family=Source+Sans+Pro:wght@400;600;700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+----------------------------------------------
+Intro:
+----------------------------------------------
+Hi! I'm Fung Lam
+A Web Developer
+Striving to be a full stack developer
+A freelance/Part time Web developer from Hong Kong. I'm a recent graduate of City University, School of Creative Media. I am currently available and looking for a full time job.
+
+intro 2:
+I am interested in latest trends of web technologies and exploring them so I like to learn new things. I am also interested in VR using web technologies or Unity. I am striving to become a full-stack developer as I grow.
+
+Skills
+----------------------------------------------
+Html, Css, Js, React, Redux, Sass, Bootstrap, Tailwind, Firebase etc.
+sql, crud operations.
+
+TOOLS
+VScode, Github.
+
+
+I love to create design which speaks, Keep it clean, minimal and simple.
+I LIKE TO DESIGN
+Web Design
+Mobile Apps
+TOOLS
+Figma
+
+I value business or brand for which i'm creating, thus i enjoy bringing new ideas to life.
+SKILLS
+
+
+
+----------------------------------------------
+
+About Text
+
+----------------------------------------------
+I'm a front-end developer located in India. I love to create simple yet beautiful websites with great user experience.
+
+I'm interested in the whole frontend stack Like trying new things and building great projects. I'm an independent freelancer and blogger. I love to write blogs and read books.
+
+I believe everything is an Art when you put your consciousness in it. You can connect with me via social links.
+----------------------------------------------
+
+
+Theme
+----------------------------------------------
+    body:"#FCF6F4",
+    text:"#000000",
+    fontFamily:"'Source Sans Pro', sans-serif",
+    bodyRgba : "252, 246, 244",
+    textRgba:"0,0,0",
+
+
+----------------------------------------------
