@@ -4,7 +4,7 @@ import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
 
 export default function SinglePost() {
-  const [singleProjectData, setSingleProjectData] = useState(null);
+  const [singlePostData, setSinglePostData] = useState(null);
   const { slug } = useParams();
 
   useEffect(() =>{
@@ -22,20 +22,20 @@ export default function SinglePost() {
       "name": author-> name,
       "authorImage": author-> image
     }`)
-    .then((data) => setSingleProjectData(data[0]))
+    .then((data) => setSinglePostData(data[0]))
     .catch(console.error);
   }, [slug]);
 
-  if (!singleProjectData) return <h1>No Project Data!</h1>
+  if (!singlePostData) return <h1>No Single Post Data!</h1>
 
   return (
     <>
       <h1>SinglePost page!</h1>
-      <h1>{singleProjectData.title}</h1>
-      <h1>{singleProjectData.body.name}</h1>
-      <img src={singleProjectData.mainImage.asset.url} alt={singleProjectData.name} />
+      <h1>{singlePostData.title}</h1>
+      <h1>{singlePostData.body.name}</h1>
+      <img src={singlePostData.mainImage.asset.url} alt={singlePostData.name} />
       <div className="prose lg:prose-xl list-disc">
-        <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
+        <BlockContent blocks={singlePostData.body} projectId="22zf6zhh" dataset="production" />
       </div>
     </>
   )

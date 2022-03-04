@@ -4,6 +4,7 @@ import About from "./components/About";
 import SinglePost from "./components/SinglePost";
 import Post from "./components/Post";
 import Projects from "./components/Projects";
+import SingleProject from "./components/SingleProject";
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/post" element={<Post/>}/>
           <Route path="/post/:slug" element={<SinglePost/>}/>
           <Route path="/projects" element={<Projects/>}/>
+          <Route path="/projects/:slug" element={<SingleProject/>}/>
         </Routes>
       </Router>
     </div>
