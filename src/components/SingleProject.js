@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
 
-export default function SinglePost() {
-  const [singlePostData, setSinglePostData] = useState(null);
+export default function SingleProject() {
+  const [singleProjectData, setSingleProjectData] = useState(null);
   const { slug } = useParams();
 
   useEffect(() =>{
@@ -22,20 +22,20 @@ export default function SinglePost() {
       "name": author-> name,
       "authorImage": author-> image
     }`)
-    .then((data) => setSinglePostData(data[0]))
+    .then((data) => setSingleProjectData(data[0]))
     .catch(console.error);
   }, [slug]);
 
-  if (!singlePostData) return <h1>No Single Post Data!</h1>
+  if (!singleProjectData) return <h1>No Single Project Data!</h1>
 
   return (
     <>
-      <h1>SinglePost page!</h1>
-      <h1>{singlePostData.title}</h1>
-      <h1>{singlePostData.body.name}</h1>
-      <img src={singlePostData.mainImage.asset.url} alt={singlePostData.name} />
+      <h1>SingleProject page!</h1>
+      <h1>{singleProjectData.title}</h1>
+      <h1>{singleProjectData.categories}</h1>
+      <img src={singleProjectData.mainImage.asset.url} alt={singleProjectData.name} />
       <div className="prose lg:prose-xl list-disc">
-        <BlockContent blocks={singlePostData.body} projectId="22zf6zhh" dataset="production" />
+        <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
       </div>
     </>
   )

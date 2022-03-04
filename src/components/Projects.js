@@ -15,7 +15,7 @@ export default function Projects() {
           _id,
           url
         },
-        alt 
+        alt
       }
     }`)
     .then((data) => setProjectData(data))
@@ -27,16 +27,16 @@ export default function Projects() {
       <section>
       <h1>Projects page!</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectData && projectData.map((post, index) => (
+          {projectData && projectData.map((project, index) => (
           <article>
-            <Link to={"/post/" + post.slug.current} key={post.slug.current}>
+            <Link to={"/projects/" + project.slug.current} key={project.slug.current}>
               <span key={index}>
                 <span>
                   <h1>
-                    {post.title}
+                    {project.title}
                   </h1>
                 </span>
-                <img src={post.mainImage.asset.url} alt={post.mainImage.alt} />
+                <img src={project.mainImage.asset.url} alt={project.mainImage.alt} />
               </span>
             </Link>
           </article>

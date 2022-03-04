@@ -16,9 +16,9 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/About" element={<About/>}/>
           <Route path="/post" element={<Post/>}/>
-          <Route path="/post/:slug" element={<SinglePost/>}/>
           <Route path="/projects" element={<Projects/>}/>
-          <Route path="/projects/:slug" element={<SingleProject/>}/>
+          <Route path="/post/:slug" element={<SinglePost/>}/>
+          <Route path="/projects/:slug" element={<SingleProject/>} />
         </Routes>
       </Router>
     </div>
