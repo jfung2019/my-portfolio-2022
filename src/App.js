@@ -19,7 +19,6 @@ function App() {
           <Route path="/projects" element={<Projects/>}/>
         </Routes>
       </Router>
-      <h1>adasd</h1>
     </div>
   );
 }
