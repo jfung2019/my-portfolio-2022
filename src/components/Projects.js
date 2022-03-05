@@ -28,14 +28,12 @@ export default function Projects() {
       <h1>Projects page!</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectData && projectData.map((project, index) => (
-          <article>
+          <article key={index}>
             <Link to={"/projects/" + project.slug.current} key={project.slug.current}>
-              <span key={index}>
-                <span>
-                  <h1>
-                    {project.title}
-                  </h1>
-                </span>
+              <span>
+                <h1>
+                  {project.title}
+                </h1>
                 <img src={project.mainImage.asset.url} alt={project.mainImage.alt} />
               </span>
             </Link>

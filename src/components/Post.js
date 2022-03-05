@@ -29,9 +29,9 @@ export default function Post() {
       <h1>This is the Post page!</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {postData && postData.map((post, index) => (
-          <article>
+          <article key={index}>
             <Link to={"/post/" + post.slug.current} key={post.slug.current}>
-              <span key={index}>
+              <span>
                 <span>
                   <h1>
                     {post.title}
