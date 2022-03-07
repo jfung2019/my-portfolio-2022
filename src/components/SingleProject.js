@@ -33,7 +33,7 @@ export default function SingleProject() {
   }, [slug]);
 
   if (!singleProjectData) return <h1>No Single Project Data!</h1>
-  console.log(singleProjectData.imagesGallery);
+
   return (
     <>
       <div className="container w-full">
@@ -49,19 +49,32 @@ export default function SingleProject() {
             <div className="flex flex-wrap -m-1 md:-m-2">
               <div className="flex flex-wrap w-1/2">
                 <div className="w-full p-1 md:p-2">
-                  <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={singleProjectData.imagesGallery[0].asset.url} />
+                  {singleProjectData.imagesGallery !== undefined
+                    ? <div>
+                        <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={singleProjectData.imagesGallery[0].asset.url} />
+                      </div>
+                    : <div></div>
+                  }
                 </div>
-                {singleProjectData.imagesGallery.slice(1).map((gallery, index) => (
-                    <div className="w-1/2 p-1 md:p-2" key={index}>
-                      <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={gallery.asset.url} />
+                {singleProjectData.imagesGallery !== undefined
+                  ? <div>
+                      {singleProjectData.imagesGallery.slice(1).map((gallery, index) => (
+                        <div className="w-1/2 p-1 md:p-2" key={index}>
+                          <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={gallery.asset.url} />
+                        </div>
+                      ))}
                     </div>
-                ))}
+                  : <div></div>
+                }
               </div>
-              <div className="flex flex-wrap w-1/2">
-                <div className="prose lg:prose-xl">
-                  <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
+              {singleProjectData.body !== undefined ?
+                <div className="flex flex-wrap w-1/2">
+                  <div className="prose lg:prose-xl">
+                    <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
+                  </div>
                 </div>
-              </div>
+                : <div></div>
+              }
             </div>
           </div>
         </section>

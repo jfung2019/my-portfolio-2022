@@ -8,27 +8,41 @@ export default function Projects() {
   useEffect(() => {
     sanityClient.fetch(
       `*[_type == "project"]{
-      title,
-      slug,
-      mainImage{
-        asset->{
-          _id,
-          url
+        title,
+        slug,
+        categories[]->{
+          title
         },
-        alt
-      }
-    }`)
+        mainImage{
+          asset->{
+            _id,
+            url
+          },
+          alt 
+        }
+     }`)
     .then((data) => setProjectData(data))
     .catch((console.error));
   }, []);
+
+  console.log(projectData)
+
+  const filterItem = (filter) => {
+    console.log(filter);
+  };
 
   return (
     <main>
       <section>
       <h1>Projects page!</h1>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectData && projectData.map((project, index) => (
           <article key={index}>
+          <button  className="bg-blue-200 p-4" value={project.categories[0].title} onClick={e => filterItem(e.target.value)}>
+            {project.categories[0].title}
+          </button>
+
             <Link to={"/projects/" + project.slug.current} key={project.slug.current}>
               <span>
                 <h1>
