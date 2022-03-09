@@ -63,3 +63,14 @@ Theme
 
 
 ----------------------------------------------
+
+Project Categories for filter:
+1. VR projects
+2. Games 
+3. Web / Mobile App
+5. 3D Animation
+5. Photography
+6. All
+
+Nav 
+Home, Portfolio, Experience, Contact

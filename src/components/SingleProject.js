@@ -24,6 +24,13 @@ export default function SingleProject() {
           url
         }
       },
+      gifGallery[]{
+        asset->{
+          _id,
+          url
+        }
+      },
+      videosUrl[],
       body,
       "name": author-> name,
       "authorImage": author-> image
@@ -33,7 +40,7 @@ export default function SingleProject() {
   }, [slug]);
 
   if (!singleProjectData) return <h1>No Single Project Data!</h1>
-
+  
   return (
     <>
       <div className="container w-full">
@@ -49,14 +56,14 @@ export default function SingleProject() {
             <div className="flex flex-wrap -m-1 md:-m-2">
               <div className="flex flex-wrap w-1/2">
                 <div className="w-full p-1 md:p-2">
-                  {singleProjectData.imagesGallery !== undefined
+                  {singleProjectData.imagesGallery !== null
                     ? <div>
                         <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={singleProjectData.imagesGallery[0].asset.url} />
                       </div>
                     : <div></div>
                   }
                 </div>
-                {singleProjectData.imagesGallery !== undefined
+                {singleProjectData.imagesGallery !== null
                   ? <div>
                       {singleProjectData.imagesGallery.slice(1).map((gallery, index) => (
                         <div className="w-1/2 p-1 md:p-2" key={index}>
@@ -67,16 +74,36 @@ export default function SingleProject() {
                   : <div></div>
                 }
               </div>
-              {singleProjectData.body !== undefined ?
-                <div className="flex flex-wrap w-1/2">
-                  <div className="prose lg:prose-xl">
-                    <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
-                  </div>
-                </div>
-                : <div></div>
-              }
             </div>
+            {singleProjectData.body != null ?
+              <div className="flex flex-wrap w-1/2">
+                <div className="prose lg:prose-xl">
+                  <BlockContent blocks={singleProjectData.body} projectId="22zf6zhh" dataset="production" />
+                </div>
+              </div>
+              : <div></div>
+            }
           </div>
+          {singleProjectData.videosUrl != null ?
+             <div>
+             {singleProjectData.videosUrl.map((item, index) => (
+                <div key={index}>
+                  <iframe width="420" height="315" src={item}></iframe>
+                </div>
+             ))}
+            </div>
+            : <div></div>
+          }
+          {singleProjectData.gifGallery != null ?
+            <div>
+              {singleProjectData.gifGallery.map((item, index) => (
+                <div key={index}>
+                  <img alt="" className="block object-cover object-center w-full h-full rounded-lg" src={item.asset.url} />
+                </div>
+              ))}
+            </div> : 
+            <div></div>
+          }
         </section>
       </div>
     </>

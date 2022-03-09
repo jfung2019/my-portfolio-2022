@@ -39,6 +39,20 @@ export default {
      }
     ,
     {
+      name: 'gifGallery',
+      title: 'Gif gallery',
+      type: 'array',
+      of: [{ type: 'file' }]
+     }
+    ,
+    {
+      name: 'videosUrl',
+      title: 'Videos url',
+      type: 'array',
+      of: [{ type: 'string' }]
+     }
+    ,
+    {
       name: 'categories',
       title: 'Categories',
       type: 'array',
