@@ -5,12 +5,12 @@ export default function NavBar() {
   return (
     <header>
       <div className="bg-red-200">
-        <NavLink to="/" >Home</NavLink>
-        <NavLink to="/About">About</NavLink>
-        <NavLink to="/Post">Post</NavLink>
-        <NavLink to="/Projects">Projects</NavLink>
+        <NavLink to="/" className="p-4">Home</NavLink>
+        <NavLink to="/Post" className="p-4">Post</NavLink>
+        <NavLink to="/Experience" className="p-4">Experience</NavLink>
+        <NavLink to="/Projects" className="p-4">Projects</NavLink>
+        <NavLink to="/Contact" className="p-4">Contact</NavLink>
       </div>
     </header>
-
   )
 }

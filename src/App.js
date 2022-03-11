@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./components/Home";
-import About from "./components/About";
+import Contact from "./components/Contact";
+import Experience from "./components/Experience";
 import SinglePost from "./components/SinglePost";
 import Post from "./components/Post";
 import Projects from "./components/Projects";
@@ -14,7 +15,8 @@ function App() {
       <NavBar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/About" element={<About/>}/>
+          <Route path="/Contact" element={<Contact/>}/>
+          <Route path="/Experience" element={<Experience/>}/>
           <Route path="/post" element={<Post/>}/>
           <Route path="/projects" element={<Projects/>}/>
           <Route path="/post/:slug" element={<SinglePost/>}/>

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
+import { motion } from "framer-motion";
+
 
 export default function SinglePost() {
   const [singlePostData, setSinglePostData] = useState(null);
@@ -26,7 +28,26 @@ export default function SinglePost() {
     .catch(console.error);
   }, [slug]);
 
-  if (!singlePostData) return <h1>No Single Post Data!</h1>
+  if (!singlePostData) {
+    return (
+      <div className="w-full h-max align-middle">
+        <motion.div transition={{
+          y: {
+            duration: 1,
+            yoyo: Infinity,  
+            ease: "easeIn",
+          }
+        }}
+        animate={{ y: ["0px", "-200px"] }}>
+        <div className="flex h-screen">
+          <div className="m-auto">
+            <div className="h-10 w-10 rounded-full bg-blue-200 mx-auto"></div>
+          </div>
+        </div>
+      </motion.div>
+      </div>
+    )
+  }
 
   return (
     <>

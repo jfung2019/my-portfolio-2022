@@ -2,10 +2,13 @@ import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
+import { motion } from "framer-motion";
 
 export default function SingleProject() {
   const [singleProjectData, setSingleProjectData] = useState(null);
   const { slug } = useParams();
+  const [loading, setLoading] = useState(true);
+  const transition = { duration: 0.5, ease: "easeInOut" };
 
   useEffect(() =>{
     sanityClient.fetch(`*[slug.current == "${slug}"]{
@@ -37,12 +40,49 @@ export default function SingleProject() {
     }`)
     .then((data) => setSingleProjectData(data[0]))
     .catch(console.error);
+    setLoading(false);
   }, [slug]);
 
-  if (!singleProjectData) return <h1>No Single Project Data!</h1>
-  
+  console.log("loading is now: " + loading);
+  if (!singleProjectData) {
+    return (
+      <div className="w-full h-max align-middle">
+        <motion.div transition={{
+          y: {
+            duration: 1,
+            yoyo: Infinity,  
+            ease: "easeIn",
+          }
+        }}
+        animate={{ y: ["0px", "-200px"] }}>
+        <div className="flex h-screen">
+          <div className="m-auto">
+            <div className="h-10 w-10 rounded-full bg-blue-200 mx-auto"></div>
+          </div>
+        </div>
+      </motion.div>
+      </div>
+    )
+  }
+
   return (
     <>
+      {loading ? <div className="w-full h-max align-middle">
+        <motion.div transition={{
+          y: {
+            duration: 1,
+            yoyo: Infinity,  
+            ease: "easeIn",
+          }
+        }}
+        animate={{ y: ["0px", "-200px"] }}>
+        <div class="flex h-screen">
+          <div class="m-auto">
+            <div className="h-10 w-10 rounded-full bg-blue-200 mx-auto"></div>
+          </div>
+        </div>
+      </motion.div>
+      </div> : ""}
       <div className="container w-full">
         <h1>SingleProject page!</h1>
         <h1>{singleProjectData.title}</h1>
@@ -51,7 +91,11 @@ export default function SingleProject() {
         <img className="justify-center mx-auto w-full h-[400px]" src={singleProjectData.mainImage.asset.url} alt={singleProjectData.name} />
         <h1 className="text-black text-2xl font-bold">This is the image gallery</h1>
 
-        <section className="overflow-hidden text-gray-700 ">
+        <motion.section className="overflow-hidden text-gray-700"
+         initial={{ y: 100, opacity: 0 }}
+         animate={{ y: 0, opacity: 1, transition }}
+         exit={{ y: -100, opacity: 0, transition }}
+        >
           <div className="container px-5 py-2 mx-auto lg:pt-24 lg:px-32">
             <div className="flex flex-wrap -m-1 md:-m-2">
               <div className="flex flex-wrap w-1/2">
@@ -104,7 +148,7 @@ export default function SingleProject() {
             </div> : 
             <div></div>
           }
-        </section>
+        </motion.section>
       </div>
     </>
   )

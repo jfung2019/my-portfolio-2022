@@ -16,7 +16,8 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    },
+    }
+    ,
     {
       name: 'author',
       title: 'Author',
@@ -36,13 +37,6 @@ export default {
       title: 'Images gallery',
       type: 'array',
       of: [{ type: 'image' }]
-     }
-    ,
-    {
-      name: 'gifGallery',
-      title: 'Gif gallery',
-      type: 'array',
-      of: [{ type: 'file' }]
      }
     ,
     {

@@ -14,6 +14,46 @@ export default {
       type: 'string',
     },
     {
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+    },
+    {
+      name: 'experience',
+      title: 'Experience',
+      type: 'array',
+      of: [
+        {
+          title: 'Experience',
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string'
+            },
+            {
+              name: 'subTitle',
+              title: 'SubTitle',
+              type: 'string'
+            },
+            {
+              name: 'date',
+              title: 'Date',
+              type: 'string'
+            },
+            {
+              title: 'Experience', 
+              name: 'experience',
+              type: 'array', 
+              of: [{type: 'block'}]
+            } 
+          ]
+        }
+      ]
+    }
+    ,
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
