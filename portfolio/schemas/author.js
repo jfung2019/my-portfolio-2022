@@ -47,7 +47,7 @@ export default {
               name: 'experience',
               type: 'array', 
               of: [{type: 'block'}]
-            } 
+            }
           ]
         }
       ]

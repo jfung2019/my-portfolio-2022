@@ -103,11 +103,15 @@ export default function Projects() {
         >
           Photography
         </button>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
             {projectData &&
               projectData.map((project, index) => (
                 <AnimatePresence>
                   <motion.div key={index} 
+                     whileHover={{
+                      scale: 1.1,
+                      textShadow: "0px 0px 4px gray"
+                    }}
                   initial={{ x: "100%", opacity: 0 }}
                   animate={{ x: 0, opacity: 1, duration: 0.5, ease: "easeInOut" }}
                   exit={{ x: "-100%", opacity: 0, duration: 0.5, ease: "easeInOut" }}>

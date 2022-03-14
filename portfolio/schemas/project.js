@@ -40,6 +40,13 @@ export default {
      }
     ,
     {
+      name: 'gifGallery',
+      title: 'Gif Gallery',
+      type: 'array',
+      of: [{ type: 'file' }]
+     }
+    ,
+    {
       name: 'videosUrl',
       title: 'Videos url',
       type: 'array',
