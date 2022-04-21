@@ -1,0 +1,9 @@
+      <svg width="275" height="269" viewBox="0 0 275 269" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity: 1; transform: translateY(0px);">
+          <rect className="c-eyelash c-eyelash--3" x="0.301636" y="40.4437" width="20" height="64" rx="8" transform="rotate(-45 0.301636 40.4437)" fill="white" style="opacity: 1;"></rect>
+          <rect className="c-eyelash c-eyelash--2" x="126" width="20" height="64" rx="8" fill="white" style="opacity: 1;"></rect>
+          <rect className="c-eyelash c-eyelash--1" x="257.556" y="26.3015" width="20" height="64" rx="8" transform="rotate(45 257.556 26.3015)" fill="white" style="opacity: 1;"></rect>
+          <ellipse className="c-eyeball" cx="137.5" cy="181.5" rx="137.5" ry="87.5" fill="white"></ellipse>
+          <path className="c-cornea" 
+          d="M138 233C166.719 233 190 209.943 190 181.5C190 153.057 166.719 130 138 130C109.281 130 86 153.057 86 181.5C86 209.943 109.281 233 138 233Z"
+           fill="black" style="transform: translateX(36.6522px) translateY(0px) scale(1);"></path>
+        </svg>

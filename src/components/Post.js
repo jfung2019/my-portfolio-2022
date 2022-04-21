@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Post() {
   const [postData, setPost] = useState(null);
-  const [filter, setFilter] = useState("Web App");
+  const [filter, setFilter] = useState("All Post");
 
   useEffect(() => {
     sanityClient
@@ -34,10 +34,12 @@ export default function Post() {
     setFilter(`${filter}`);
   };
 
+  console.log(postData);
+
   if (!postData) {
     return (
       <div className="w-full h-max align-middle">
-        <motion.div transition={{
+        {/* <motion.div transition={{
           y: {
             duration: 1,
             yoyo: Infinity,  
@@ -50,7 +52,8 @@ export default function Post() {
             <div className="h-10 w-10 rounded-full bg-blue-200 mx-auto"></div>
           </div>
         </div>
-      </motion.div>
+      </motion.div> */}
+      <img className="mx-auto" src="http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-14.gif" alt="loading gif" />
       </div>
     )
   }
@@ -78,11 +81,11 @@ export default function Post() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {postData &&
             postData.map((post, index) => (
-              <article key={index}>
-                <Link to={"/post/" + post.slug.current} key={post.slug.current}>
+              <motion.article key={index} >
+                <Link to={"/Post/" + post.slug.current} key={post.slug.current}>
                   <span>
                     <span>
-                      <h1>{post.title}</h1>
+                      <h1 className="text-white">{post.title}</h1>
                     </span>
                     <img
                       src={post.mainImage.asset.url}
@@ -90,7 +93,7 @@ export default function Post() {
                     />
                   </span>
                 </Link>
-              </article>
+              </motion.article>
             ))}
         </div>
       </section>

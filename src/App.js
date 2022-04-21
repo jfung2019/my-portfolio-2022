@@ -1,27 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from "./components/Home";
-import Contact from "./components/Contact";
-import Experience from "./components/Experience";
-import SinglePost from "./components/SinglePost";
-import Post from "./components/Post";
-import Projects from "./components/Projects";
-import SingleProject from "./components/SingleProject";
+import { BrowserRouter as Router } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import AnimatedRoutes from "./components/AnimatedRoutes";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-black">
       <Router>
-      <NavBar/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/Contact" element={<Contact/>}/>
-          <Route path="/Experience" element={<Experience/>}/>
-          <Route path="/post" element={<Post/>}/>
-          <Route path="/projects" element={<Projects/>}/>
-          <Route path="/post/:slug" element={<SinglePost/>}/>
-          <Route path="/projects/:slug" element={<SingleProject/>} />
-        </Routes>
+        <NavBar />
+        <AnimatedRoutes />
       </Router>
     </div>
   );

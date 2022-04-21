@@ -16,14 +16,35 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    }
-    ,
+    },
+    {
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+    },
+    {
+      name: 'demoUrl',
+      title: 'Demo Url',
+      type: 'string',
+    },
+    {
+      name: 'codeUrl',
+      title: 'Code Url',
+      type: 'string',
+    },
     {
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: {type: 'author'},
     },
+    {
+      name: 'techUsed',
+      title: 'Tech Used',
+      type: 'array',
+      of: [{ type: 'string' }]
+     }
+    ,
     {
       name: 'mainImage',
       title: 'Main image',
@@ -69,6 +90,11 @@ export default {
       title: 'Body',
       type: 'blockContent',
     },
+    {
+      title: 'Featured?',
+      name: 'isFeatured',
+      type: 'boolean'
+    }
   ],
 
   preview: {

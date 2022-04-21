@@ -73,4 +73,65 @@ Project Categories for filter:
 6. All
 
 Nav 
-Home, Portfolio, Experience, Contact
+Home, Portfolio, Experience (About Me), Contact
+
+React - js
+Angular - js / typescript
+Phoenix Elixir
+flutter
+Git version control
+sql
+Firebase
+mongoDB
+
+make a new project for testing.
+- react app that update background based on real time.
+
+Tech stacks:
+recently worked with:
+tailwindcss, phoneix, elixir, django, flask.
+reactjs, sanity, mysql, firebase, flutter.
+- Unity VR. 
+
+cloudfare pages, heruko, godaddy, netlify.
+
+
+
+
+
+- html https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/html.png
+- css https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/css.png
+- js  https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/js.png
+- reactjs https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/react.png
+- angularjs https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/angular.png
+- phoenix https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/phx.png
+- Elixir https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/elixir.png
+- flutter https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/flutter.png
+- dart https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/dart.png
+- Unity https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/unity.png
+- C# https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/csharp.png
+
+responsive
+- bootstrap 
+- tailwindcss
+
+gitlab and github. https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/github.png
+
+godaddy
+heruko
+netlify
+
+learning right now:
+Reactjs and RemixJs, BlitzJs. 
+
+- sanity.io
+- posgresql
+- firebase 
+- mongodb 
+- sql
+
+- photoshop
+- adobe premier
+- after effects
+
+- vscode https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/vscode.png
