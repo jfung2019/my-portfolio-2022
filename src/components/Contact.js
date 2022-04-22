@@ -11,7 +11,7 @@ export default function Contact() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1500);
     sanityClient
       .fetch(
         `*[_type == "author"]{
@@ -31,24 +31,20 @@ export default function Contact() {
 
   if (!authorData || loading === true) {
     return (
+      <div className="w-full h-screen absolute align-middle z-30">
       <motion.div
-        className="w-full h-screen align-middle"
-        initial={{ x: "-100%", opacity: 0 }}
+        className="w-full h-screen absolute bg-[#EABE7B]"
+        initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
         animate={{
-          x: 0,
-          opacity: 1,
+          scaleY: 1.3,
+          y: ["100vh", "0vh", "0vh", "100vh"],
           transition: {
-            when: "afterChildren",
-            duration: 2.5,
-            ease: [0.87, 0, 0.13, 1],
+            duration: 1.5,
+            ease: [0.25, 0.25, 0.13, 1],
           },
         }}>
-        <img
-          className="h-full mx-auto bg-blue-200"
-          src="https://cdn.dribbble.com/users/2367833/screenshots/16195486/media/f0c5bacd01dad236bb23fb726330fa23.gif"
-          alt="loading gif"
-        />
       </motion.div>
+    </div>
     );
   }
 

@@ -12,7 +12,7 @@ export default function Projects() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1200);
+    }, 1500);
 
     sanityClient
       .fetch(
@@ -75,23 +75,20 @@ export default function Projects() {
 
   if (!projectData || loading === true) {
     return (
-      <motion.div
-        className="w-full h-screen absolute bg-[#EABE7B]"
-        initial={{ scaleY: 1, y: "100vh", opacity: 1 }}
-        animate={{
-          scaleY: 1,
-          y: ["100vh", "0vh", "0vh", "100vh"],
-          transition: {
-            duration: 1.2,
-            ease: [0.25, 0.25, 0.13, 1],
-          },
-        }}>
-        {/* <img
-    className="h-full mx-auto"
-    src="https://cdn.dribbble.com/users/2367833/screenshots/16195486/media/f0c5bacd01dad236bb23fb726330fa23.gif"
-    alt="loading gif"
-  /> */}
-      </motion.div>
+      <div className="w-full h-screen absolute align-middle z-30">
+        <motion.div
+          className="w-full h-screen absolute bg-[#EABE7B]"
+          initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
+          animate={{
+            scaleY: 1.3,
+            y: ["100vh", "0vh", "0vh", "100vh"],
+            transition: {
+              duration: 1.5,
+              ease: [0.25, 0.25, 0.13, 1],
+            },
+          }}>
+        </motion.div>
+      </div>
     );
   }
 
@@ -136,7 +133,7 @@ export default function Projects() {
             opacity: 0,
             transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.7 },
           }}
-          className="font-DMSerifDisplay text-white mb-8">
+          className="font-DMSerifDisplay text-white">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium,
           architecto et distinctio ex sequi perferendis excepturi cumque
           repellat nostrum, exercitationem quas error quos eligendi deserunt
@@ -150,7 +147,7 @@ export default function Projects() {
             y: -100,
             transition: {  duration: 0.7 },
           }}
-          className="">
+          className="mt-8">
           <button
             className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
             value="All Projects"
@@ -190,7 +187,7 @@ export default function Projects() {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-14 mb-14"
           variants={listItemContainerVariant}
           initial="hidden"
           animate="show"

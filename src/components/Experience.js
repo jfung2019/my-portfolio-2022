@@ -12,7 +12,7 @@ export default function Experience() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1200);
+    }, 1500);
 
     sanityClient
       .fetch(
@@ -31,25 +31,20 @@ export default function Experience() {
 
   console.log(authorData);
 
-  if (authorData.length < 1 || loading === true) {
+  if (!authorData.length < 0 || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle">
+      <div className="w-full h-screen absolute align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
-          initial={{ scaleY: 1, y: "120vh", opacity: 1 }}
+          initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
-            scaleY: 1,
+            scaleY: 1.3,
             y: ["100vh", "0vh", "0vh", "100vh"],
             transition: {
-              duration: 1.2,
+              duration: 1.5,
               ease: [0.25, 0.25, 0.13, 1],
             },
           }}>
-          {/* <img loading="lazy"
-          className="h-full mx-auto"
-          src="https://cdn.dribbble.com/users/2367833/screenshots/16195486/media/f0c5bacd01dad236bb23fb726330fa23.gif"
-          alt="loading gif"
-        /> */}
         </motion.div>
       </div>
     );
@@ -65,17 +60,21 @@ export default function Experience() {
           <div className="w-full h-screen flex flex-col lg:flex-row m-auto">
             <motion.div
               className="w-full lg:w-1/2 my-auto flex justify-start md:justify-start lg:justify-end "
-              initial={{ opacity: 0 }}
+              initial={{ scale: 0, opacity: 0, x: -500, y: 300 }}
               animate={{
+                scale: 1,
                 opacity: 1,
+                x: 0,
+                y: 0,
                 transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
               }}
               exit={{
                 y: -400,
                 opacity: 0,
-                transition: { ease: "easeInOut", duration: 0.8 },
+                transition: { ease: [0.25, 0.25, 0.13, 1], duration: 0.8 },
               }}>
-              <img loading="lazy"
+              <img
+                loading="lazy"
                 className="object-fit h-auto w-auto min-w-[300px] pr-0 md:pl-[0px] lg:pr-[150px]"
                 src="https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/aboutMeHeader.png"
                 alt=""
@@ -119,10 +118,13 @@ export default function Experience() {
             </motion.div>
             <motion.div
               className="w-full lg:w-1/2 m-auto ml-0 md:ml-[-10px]"
-              initial={{ y: 400, opacity: 0 }}
+              initial={{ scale: 0, opacity: 0, x: -500, y: 300 }}
               animate={{
-                y: 0,
+                scale: 1,
                 opacity: 1,
+                x: 0,
+                y: 0,
+                transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
               }}
               exit={{
                 y: -400,
@@ -181,7 +183,8 @@ export default function Experience() {
               transition={{ ease: "linear", duration: 30, loop: Infinity }}>
               {authorData.techSkills.map((techSkills, index) => (
                 <div key={index}>
-                  <img loading="lazy"
+                  <img
+                    loading="lazy"
                     className="object-cover h-auto w-[150px] min-w-[45px]"
                     src={techSkills}
                     alt="techSkills"
@@ -208,7 +211,8 @@ export default function Experience() {
                 transition={{ ease: "linear", duration: 30, loop: Infinity }}>
                 {authorData.techSkills.map((techSkills, index) => (
                   <div key={index}>
-                    <img loading="lazy"
+                    <img
+                      loading="lazy"
                       className="object-cover h-auto w-[150px] min-w-[45px]"
                       src={techSkills}
                       alt="techSkills"
