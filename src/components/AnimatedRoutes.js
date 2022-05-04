@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./Home";
 import Contact from "./Contact";
-import Experience from "./Experience";
+import AboutMe from "./AboutMe";
 import SinglePost from "./SinglePost";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -16,7 +16,7 @@ function AnimatedRoutes() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Experience" element={<Experience />} />
+          <Route path="/About" element={<AboutMe />} />
           <Route path="/Post" element={<Post />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/post/:slug" element={<SinglePost />} />

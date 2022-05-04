@@ -135,3 +135,28 @@ Reactjs and RemixJs, BlitzJs.
 - after effects
 
 - vscode https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/vscode.png
+
+
+- small finishing touches before deploying
+    - Home page, Dev word hover to show full word "Developer" -Done
+    - on Scroll activated animations
+    - maybe try again with use animation layout to show the gallery on click.
+    - the content wording 
+    - mailto for my email in contact page
+    - link to whatsapp for my phone number.
+    - email js
+    Can be done even after deployed.
+    - finalize the icons missing and to add in conveyer belt.
+
+- host image using github
+
+    Generated url from google drive through share
+    https://drive.google.com/file/d/1dqukmS43ry9XgiJkERgbahH8Mu4XUf-4/view
+
+    https://drive.google.com/uc?expor=id
+
+    id = 1dqukmS43ry9XgiJkERgbahH8Mu4XUf
+
+    Generated perma link after all the step above.
+    example:
+    https://doc-0k-5s-docs.googleusercontent.com/docs/securesc/jndknmp7600lbhf7c32j222ogs23jgqr/4j2p8tk58e1ougul4t083o3msqqci567/1650984375000/01805073659929980108/01805073659929980108/1dqukmS43ry9XgiJkERgbahH8Mu4XUf-4?e=view&ax=ACxEAsZGuhEE0W5kfJL1v8g1YpYx6GPb2dMsragHdRBfMBF_bOSNyucjWLU-3spoE9eiEtLZQcviOX522avf-v45iWY_3867YuXfuq76p42sZmTNZMpPPmO9rjTP_NQwUTV1-Vf-xNzIJBXWMNtHr-r_ZgFZ6LsrR4d0Tl5UHmx5v6AfSsQW0hygaNbNkiicDWRvQVCTDdlIqRpKd0u4Rv3-Qv2SQZA2jYt6XsB8k9-rapC3zekXqPe6bjvksqgCnhAbFA_2olvQMVZK9Qg0yIn5trjqOq3kqpR14uz2Svr37XgrvSHRAU2U6PnBWZcVqs7P0G0BbWAGMDyWkV-VlVGP6QLa8Cmk1jCn8-OAoQrpJvhcrhmPTd-m_0El5d5-rFFGpz_SkFUvcTKour1lur9y3qmyHnze4P6t2u9lJ9WKNBLeGqM_bacVMnqM_yWJDGLvorC4bISOYaQwE7nTzARVJ3WDNEx6eE2Luh-woXvFZLNFxbJx2WGJt-uwjDzuZeDsHUg8kMiAPo4IFirAeTCESGAadTDru9fzFuawZ6itFf9jYUUm-2Aiti4djdYd1JW3W6b-JnuHEMv5HzuiVXqS4KxUTNBSX5LAhSOsbUZSIJbBLg-JIS2lElkufHHOPNbli5tjDXX8YDei2V4ZZSi2PT2Tw8IeNNvo7XnbDhGYOTM6PEu5766PWGy3Id1Bb7CiDZUqhYiVQpM&authuser=0

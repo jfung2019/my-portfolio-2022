@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import gear from "../assets/images/gear.png";
 import arrow from "../assets/images/arrow.png";
 
-export default function Experience() {
+export default function AboutMe() {
   const [authorData, setAuthorData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,9 +54,9 @@ export default function Experience() {
 
   return (
     <>
-      <div className="w-full py-0 bg-black">
+      <div className="w-full py-0 bg-general-black">
         {/* Landing page of experience */}
-        <div className="w-full px-8 md:px-[160px] relative overflow-hidden">
+        <div className="w-full px-8 md:px-[80px] lg:px-[160px] relative overflow-hidden">
           <div className="w-full h-screen flex flex-col lg:flex-row m-auto">
             <motion.div
               className="w-full lg:w-1/2 my-auto flex justify-start md:justify-start lg:justify-end "
@@ -74,9 +74,8 @@ export default function Experience() {
                 transition: { ease: [0.25, 0.25, 0.13, 1], duration: 0.8 },
               }}>
               <img
-                loading="lazy"
                 className="object-fit h-auto w-auto min-w-[300px] pr-0 md:pl-[0px] lg:pr-[150px]"
-                src="https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/aboutMeHeader.png"
+                src="https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/aboutMeProfileblacker.webp"
                 alt=""
               />
               {/* <div className="w-full h-auto relative">
@@ -117,7 +116,7 @@ export default function Experience() {
               </div> */}
             </motion.div>
             <motion.div
-              className="w-full lg:w-1/2 m-auto ml-0 md:ml-[-10px]"
+              className="w-full lg:w-1/2 m-auto lg:ml-[-10px]"
               initial={{ scale: 0, opacity: 0, x: -500, y: 300 }}
               animate={{
                 scale: 1,
@@ -129,12 +128,12 @@ export default function Experience() {
               exit={{
                 y: -400,
                 opacity: 0,
-                transition: { ease: "easeInOut", duration: 0.8 },
+                transition: { ease: [0.25, 0.25, 0.13, 1], duration: 0.8 },
               }}>
-              <h1 className="text-white text-3xl md:text-[32px] leading-[45px] md:leading-[60px] font-DMSerifDisplay">
+              <h1 className="text-white text-[24px] lg:text-[32px] leading-[40px] md:leading-[40px] lg:leading-[60px] font-DMSerifDisplay mt-0 md:mt-8 lg:mt-0">
                 Hi! I'm Fung Lam!
               </h1>
-              <p className="text-white text-3xl md:text-[32px] leading-[45px] md:leading-[60px] font-DMSerifDisplay mt-4 md:mt-8">
+              <p className="text-white text-[24px] lg:text-[32px] leading-[40px] md:leading-[40px] lg:leading-[60px] font-DMSerifDisplay mt-4 lg:mt-8">
                 A Web Developer Striving to be a full stack developer I'm a
                 recent graduate of City University, School of Creative Media. I
                 am currently available and looking for a full time job.
@@ -144,7 +143,7 @@ export default function Experience() {
           {/* Scroll down arrow helpers */}
           <div className="absolute text-white top-[25%] md:top-[50%] right-[-60px] md:right-[-40px] hidden md:block">
             <div className="flex space-x-4 rotate-90">
-              <div>Scroll down</div>
+              <div className="font-DmSans">Scroll down</div>
               <motion.div
                 initial={{ x: 0 }}
                 animate={{ x: 30 }}
@@ -160,16 +159,16 @@ export default function Experience() {
           </div>
         </div>
         {/* Conveyer belt title */}
-        <div className="w-full px-8 mt-8">
+        <div className="w-full pl-[40px] pr-[25px] mt-8">
           <div className="flex justify-between space-x-4">
-            <div className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[120px] font-DMSerifDisplay">
+            <div className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[40px] lg:pl-[120px] font-DMSerifDisplay">
               Tech Skills
             </div>
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="mt-[30px] md:mt-[17px] w-[40px] h-[40px] md:w-[120px] md:h-[120px]">
-              <img loading="lazy" src={gear} alt="testing" />
+              className="mt-[30px] md:mt-[23px] lg:mt-[17px] w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
+              <img src={gear} alt="testing" />
             </motion.div>
           </div>
         </div>
@@ -177,8 +176,24 @@ export default function Experience() {
         <div className="w-full overflow-hidden px-[20px]">
           <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
             <motion.div
-              className="min-w-min flex space-x-1 md:space-x-4"
+              className="min-w-min hidden space-x-1 md:space-x-4 md:flex"
               initial={{ x: "100%" }}
+              animate={{ x: "-100%" }}
+              transition={{ ease: "linear", duration: 30, loop: Infinity }}>
+              {authorData.techSkills.map((techSkills, index) => (
+                <div key={index}>
+                  <img
+                    loading="lazy"
+                    className="object-cover h-auto w-[150px] min-w-[45px]"
+                    src={techSkills}
+                    alt="techSkills"
+                  />
+                </div>
+              ))}
+            </motion.div>
+            <motion.div
+              className="min-w-min flex space-x-1 md:space-x-4 md:hidden"
+              initial={{ x: "50%" }}
               animate={{ x: "-100%" }}
               transition={{ ease: "linear", duration: 30, loop: Infinity }}>
               {authorData.techSkills.map((techSkills, index) => (
@@ -197,7 +212,7 @@ export default function Experience() {
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="w-[40px] h-[40px] md:w-[120px] md:h-[120px]">
+              className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
               <img loading="lazy" src={gear} alt="testing" />
             </motion.div>
           </div>
@@ -226,14 +241,14 @@ export default function Experience() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="w-[40px] h-[40px] md:w-[120px] md:h-[120px] right-0">
+              className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px] right-0">
               <img loading="lazy" src={gear} alt="testing" />
             </motion.div>
           </div>
         </div>
 
         {/* Timeline */}
-        <div className="w-full px-8 lg:px-[160px] mt-8">
+        <div className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8">
           <div className="text-[40px] md:text-[70px] lg:text-[92px] mb-4 font-bold text-[#EABE7B] font-DMSerifDisplay">
             Experience
           </div>
@@ -241,18 +256,18 @@ export default function Experience() {
             {authorData.experience &&
               authorData.experience.map((experience, index) => (
                 <li className="mb-10 ml-4" key={index}>
-                  <div className="absolute w-[40px] h-[40px] md:w-[80px] md:h-[80px] bg-white rounded-full mt-0 -left-[23px] md:-left-[40px] border border-white text-white"></div>
-                  <time className="ml-4 md:ml-[40px] text-[30px] md:text-[70px] lg:text-[92px] font-bold leading-none text-white font-DMSerifDisplay">
+                  <div className="absolute w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-white rounded-full mt-0 -left-[23px] md:-left-[33px] border border-white text-white"></div>
+                  <time className="ml-4 md:ml-[40px] text-[30px] md:text-[56px] font-bold leading-none text-white font-DMSerifDisplay">
                     {experience.date}
                   </time>
                   <div className="mx-4 md:mx-[40px] mt-4 md:mt-8 bg-[#191919] p-4 rounded-md">
-                    <h3 className="text-lg text-white font-DMSerifDisplay">
+                    <h3 className="text-2xl text-white font-DMSerifDisplay">
                       {experience.title}
                     </h3>
-                    <h3 className="text-lg text-white font-DMSerifDisplay">
+                    <h3 className="text-2xl text-white font-DMSerifDisplay">
                       {experience.subTitle}
                     </h3>
-                    <div className="mt-4 mb-4 text-white font-DMSerifDisplay">
+                    <div className="mt-4 mb-4 text-[16px] text-white font-DmSans">
                       <BlockContent
                         className=""
                         blocks={experience.experience}

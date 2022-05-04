@@ -4,7 +4,7 @@
 
 I have rebuilt my website portfolio multiple times and it was always taking unnecesarry time to update the code and deploying it to the server so I have decided to rebuild my website portfolio with a cms integration this time to make it easier to manage and update contents when adding projects or data without touching the code and deploying it all over again! Hassle free! :D
 
-For this project I'm using react and sanity studio for the backend.
+For this project I'm using react with tailwindCss and sanity studio for the backend using GROQ query.
 
 ########################################################################################################################
  

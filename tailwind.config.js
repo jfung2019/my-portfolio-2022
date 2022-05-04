@@ -7,6 +7,7 @@ module.exports = {
       // Some useful comment
       fontFamily: {
         'DMSerifDisplay': ['DM Serif Display', 'serif'],
+        'DmSans': ['DM Sans', 'serif']
       },
       transformOrigin: {
         "0": "0%",
@@ -15,6 +16,12 @@ module.exports = {
         "-1": "-1",
       },
       backgroundColor: ['active'],
+      colors: {
+        'general-black': '#0B0B0B',
+        'black-v1': '#202020',
+        'gold': '#EABE7B',
+        'portfolio-gold': '#eabe7b'
+      },
     },
   },
   plugins: [

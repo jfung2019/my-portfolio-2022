@@ -86,7 +86,14 @@ export default function Projects() {
               duration: 1.5,
               ease: [0.25, 0.25, 0.13, 1],
             },
-          }}>
+          }}
+          // onAnimationStart={() =>
+          //   document.body.classList.add("overflow-hidden")
+          // }
+          // onAnimationComplete={() =>
+          //   document.body.classList.remove("overflow-hidden")
+          // }
+          >
         </motion.div>
       </div>
     );
@@ -95,45 +102,45 @@ export default function Projects() {
   console.log(projectData);
 
   return (
-    <main className="px-8 md:px-[60px] lg:px-[160px] relative overflow-hidden">
+    <div className="px-8 md:px-[60px] lg:px-[160px] relative overflow-hidden">
       {/* Scroll down arrow helpers */}
-      <div className="absolute text-white top-[25%] md:top-[50%] right-[-60px] md:right-[-40px] hidden md:block">
-            <div className="flex space-x-4 rotate-90">
-              <div>Scroll down</div>
-              <motion.div
-                initial={{ x: 0 }}
-                animate={{ x: 30 }}
-                transition={{
-                  type: "Tween",
-                  stiffness: 15,
-                  duration: 1,
-                  repeat: Infinity,
-                }}>
-                <img src={arrow} alt="arrow" />
-              </motion.div>
-            </div>
-          </div>
-      <section>
+      <div className="absolute text-white top-[35%] right-[-60px] md:right-[-40px] hidden md:block">
+        <div className="flex space-x-4 rotate-90">
+          <div className="font-DmSans">Scroll down</div>
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: 30 }}
+            transition={{
+              type: "Tween",
+              stiffness: 15,
+              duration: 1,
+              repeat: Infinity,
+            }}>
+            <img src={arrow} alt="arrow" />
+          </motion.div>
+        </div>
+      </div>
+      <div>
         <motion.h1
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          animate={{ x: 0, opacity: 1, transition:{delay: 0.2} }}
           exit={{
             x: -300,
             opacity: 0,
             transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.7 },
           }}
-          className="font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B]">
+          className="font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[92px] font-bold text-gold">
           My Work
         </motion.h1>
         <motion.p
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          animate={{ x: 0, opacity: 1, transition:{delay: 0.4} }}
           exit={{
             x: -300,
             opacity: 0,
-            transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.7 },
+            transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
           }}
-          className="font-DMSerifDisplay text-white">
+          className="font-DmSans text-white">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium,
           architecto et distinctio ex sequi perferendis excepturi cumque
           repellat nostrum, exercitationem quas error quos eligendi deserunt
@@ -145,7 +152,7 @@ export default function Projects() {
           exit={{
             opacity: 0,
             y: -100,
-            transition: {  duration: 0.7 },
+            transition: { duration: 0.7 },
           }}
           className="mt-8">
           <button
@@ -254,7 +261,7 @@ export default function Projects() {
               ))}
           </AnimatePresence>
         </motion.div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

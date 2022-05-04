@@ -24,6 +24,33 @@ export default {
       group: 'langdingPage'
     },
     {
+      name: "introOne",
+      title: "Intro 1",
+      type: "array",
+      of: [{ type: "string" }],
+      group: 'langdingPage'
+    },
+    {
+      name: "introTwo",
+      title: "Intro 2",
+      type: "array",
+      of: [{ type: "string" }],
+      group: 'langdingPage'
+    },
+    {
+      name: "introThree",
+      title: "Intro 3",
+      type: "array",
+      of: [{ type: "string" }],
+      group: 'langdingPage'
+    },
+    {
+      name: "lastName",
+      title: "Last Name",
+      type: "string",
+      group: 'langdingPage'
+    },
+    {
       name: "title",
       title: "Title",
       type: "string",
@@ -36,13 +63,20 @@ export default {
       group: 'langdingPage',
       type: "file",
     },
+    // {
+    //   name: "recomendationLetter",
+    //   title: "Recomendation Letter",
+    //   description: "Used in Landing page",
+    //   group: 'langdingPage',
+    //   type: "array",
+    //   of: [{ type: "file" }],
+    // },
     {
       name: "recomendationLetter",
       title: "Recomendation Letter",
       description: "Used in Landing page",
       group: 'langdingPage',
-      type: "array",
-      of: [{ type: "file" }],
+      type: "file",
     },
     {
       name: "techSkills",
