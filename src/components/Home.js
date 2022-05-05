@@ -83,8 +83,8 @@ export default function Home() {
   return (
     <>
       {/* transition ease-in-out duration-[5000ms] */}
-      <div className={`w-full h-[calc(100vh - 200px)] text-white`}>
-        <div className="w-full h-[80vh] px-8 md:px-[80px] lg:px-[160px] relative overflow-hidden flex flex-col lg:flex-row mx-auto bg-general-black">
+      <div className={`w-full h-[calc(100vh - 200px)] text-white z-50`}>
+        <div className="w-full h-[80vh] px-8 md:px-[80px] lg:px-[150px] relative overflow-hidden flex flex-col lg:flex-row bg-general-black">
           {/* <div className="w-full h-auto mx-auto absolute z-1 top-0 right-0 left-0 bottom-0">
             <svg
               id="visual"
@@ -115,7 +115,7 @@ export default function Home() {
             </svg>
           </div> */}
           <div className="my-auto py-8">
-            <div className="text-[40px] md:text-[70px] lg:text-[144px] md:leading-[100px] lg:leading-[160px] text-white font-bold font-DMSerifDisplay">
+            <div className="text-[40px] md:text-[70px] lg:text-[104px] xl:text-[120px] 2xl:text-[144px] md:leading-[100px] lg:leading-[130px] xl:leading-[140px] 2xl:leading-[150px] text-white font-bold font-DMSerifDisplay">
               <div className="flex space-x-[0.6rem] md:space-x-[1rem] lg:space-x-[2rem]">
                 <h1 className="flex cursor-pointer text-white">
                   {authorData.introOne[0].split("").map((letter, id) => (

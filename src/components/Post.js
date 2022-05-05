@@ -138,16 +138,16 @@ export default function Post() {
                       <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
                         <div key={post.slug.current}>
                           <div className="flex flex-col md:flex-row">
-                            <div className="w-full md:w-1/2">
+                            <div className="w-full md:w-1/2 m-auto relative">
                               <img
-                                className="rounded-[30px] sm:w-[350px] sm:h-auto md:w-[600px] md:h-[400px]"
+                                className=" rounded-[30px] sm:w-[350px] sm:h-auto md:w-[600px] md:h-[400px] object-cover"
                                 src={post.mainImage.asset.url}
                                 alt={post.mainImage.alt}
                               />
                             </div>
-                            <div className="flex flex-col w-full md:w-1/2">
+                            <div className="flex flex-col w-full md:w-1/2 pl-0 md:pl-8 mt-4 md:mt-0">
                               <div className="my-auto">
-                                <h1 className="text-[24px] text-white text-left font-DMSerifDisplay mb-4">Date: {post.publishedAt}</h1>
+                                {/* <h1 className="text-[24px] text-white text-left font-DMSerifDisplay mb-4">Date: {post.publishedAt}</h1> */}
                                 <h1 className="text-[32px] text-[#EABE7B] text-left font-DMSerifDisplay mb-4">
                                   {post.title}
                                 </h1>

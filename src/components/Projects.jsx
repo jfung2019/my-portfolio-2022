@@ -156,37 +156,37 @@ export default function Projects() {
           }}
           className="mt-8">
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="All Projects"
             onClick={e => filterItem(e.target.value)}>
             All Projects
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="Games"
             onClick={e => filterItem(e.target.value)}>
             Games
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="Web / Mobile App"
             onClick={e => filterItem(e.target.value)}>
             Web / Mobile App
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="3D Animation"
             onClick={e => filterItem(e.target.value)}>
             3D Animation
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="VR"
             onClick={e => filterItem(e.target.value)}>
             VR Projects
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2"
+            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
             value="Photography"
             onClick={e => filterItem(e.target.value)}>
             Photography
@@ -209,7 +209,7 @@ export default function Projects() {
                         to={/projects/ + project.slug.current}
                         key={project.slug.current}>
                         <div>
-                          <h1 className="text-[30px]  text-white text-right mb-2 font-DMSerifDisplay py-4">
+                          <h1 className="w-full truncate text-[30px] text-white text-right mb-2 font-DMSerifDisplay py-4">
                             {project.title}
                           </h1>
                           {/* <div className="space-x-2 pt-2 mb-4 h-[100px]">
@@ -223,7 +223,10 @@ export default function Projects() {
                                 ))
                               : null}
                           </div> */}
-                          <div>
+                          <div className="rounded-[30px] w-full relative">
+                            <div className="w-full h-full absolute top-0 rounded-[30px] bg-transparent hover:bg-gold transition-all duration-300 flex justify-center items-center">
+                              CLick Me!
+                            </div>
                             <img
                               className="rounded-[30px]"
                               src={project.mainImage.asset.url}

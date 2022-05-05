@@ -76,7 +76,8 @@ export default function SingleProject() {
           <div className="w-full flex flex-col lg:flex-row h-auto">
             <div className="w-full lg:w-1/2 my-auto order-last lg:order-first">
               {singleProjectData.title != null && (
-                <h1 className="pr-0 lg:pr-14 text-left lg:text-right font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[92px] font-bold text-white mt-4 lg:mt-0">
+                // text-[40px] md:text-[70px] lg:text-[104px] xl:text-[120px] 2xl:text-[144px]
+                <h1 className="pr-0 lg:pr-14 text-left lg:text-right font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[84px] 2xl:text-[92px] font-bold text-white mt-4 lg:mt-0">
                   {singleProjectData.title}
                 </h1>
               )}
