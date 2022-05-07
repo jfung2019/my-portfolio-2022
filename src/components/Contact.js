@@ -1,26 +1,61 @@
 import React, { useState, useEffect, useRef } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "emailjs-com";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
 import { motion } from "framer-motion";
 import sample from "../assets/svg/sample2.svg";
 import "../App.css";
 
+const Result = () => {
+  return (
+    <div className="bg-blue-200 p-8 absolute top-[1%] right-[25%] left-[25%] rounded-[25px]">
+      <h1 className="text-white font-bold text-[24px] text-center">
+        Your message has been sent successfully! Thank you!
+      </h1>
+    </div>
+  );
+};
+
 export default function Contact() {
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
   const form = useRef();
+  const [sentMail, setSentMail] = useState(false);
 
-  const sendEmail = (e) => {
+  function handleSendMail() {
+    setSentMail(true);
+    setTimeout(() => {
+      setSentMail(false);
+    }, 3000);
+  }
+
+  const sendEmail = e => {
     e.preventDefault();
-
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "service_08pn7os",
+        "template_erzllto",
+        form.current,
+        "lclBvOSP8Rd9cApz-"
+      )
+      .then(
+        result => {
           console.log(result.text);
-      }, (error) => {
+          if (result.text === "OK") {
+            // alert("Success" + result.status);
+            handleSendMail();
+            e.target.reset();
+          } else {
+            alert("Error");
+          }
+        },
+        error => {
           console.log(error.text);
-      });
+        }
+      );
   };
+
+  // console.log("mail is sent?" + sentMail);
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,7 +76,7 @@ export default function Contact() {
       .catch(console.error);
   }, []);
 
-  console.log(authorData);
+  // console.log(authorData);
 
   if (!authorData || loading === true) {
     return (
@@ -64,6 +99,9 @@ export default function Contact() {
   return (
     <div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex text-white">
       <div className="m-auto">
+        {/* Email Notification for sucess on sending */}
+        {sentMail && <Result />}
+
         <div className="flex flex-col">
           <div className="text-center w-full py-12 mt-0 md:mt-8">
             <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
@@ -73,6 +111,8 @@ export default function Contact() {
               Let's talk about you!
             </h1>
             <motion.form
+              ref={form}
+              onSubmit={sendEmail}
               initial={{ y: 100, scale: 0, x: -100 }}
               animate={{
                 y: 0,
@@ -86,9 +126,11 @@ export default function Contact() {
                 x: -500,
                 transition: { duration: 0.5, delay: 0.3 },
               }}
-              className="px-4 md:px-0 mt-8 space-y-10" ref={form} onSubmit={sendEmail}>
+              className="px-4 md:px-0 mt-8 space-y-10">
               <div className="flex flex-col space-y-5 relative">
                 <input
+                  id="subject"
+                  name="subject"
                   placeholder="Subject"
                   className="bg-transparent border-b-2 focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></input>
                 <label className="cursor-text absolute left-0 top-[-50px] text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
@@ -97,6 +139,8 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <input
+                  id="user_name"
+                  name="user_name"
                   placeholder="Your Name"
                   className="bg-transparent border-b-2 focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></input>
                 <label className="cursor-text absolute left-0 top-[-50px]  text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
@@ -105,6 +149,8 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <input
+                  id="email"
+                  name="email"
                   placeholder="Your Email"
                   className="bg-transparent border-b-2 focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></input>
                 <label className="cursor-text absolute left-0 top-[-50px]  text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
@@ -113,6 +159,8 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <textarea
+                  id="message"
+                  name="message"
                   placeholder="Share me your thoughts"
                   className="bg-transparent border-b-2 h-[40px] focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></textarea>
                 <label className="cursor-text absolute left-0 top-[-50px]  text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
@@ -121,7 +169,8 @@ export default function Contact() {
               </div>
               <div>
                 <button
-                  type="submit" value="Send"
+                  type="submit"
+                  value="Send"
                   className="bg-gray-800 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B]">
                   Send
                 </button>
