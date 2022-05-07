@@ -9,6 +9,7 @@ export default function Projects() {
   const [filter, setFilter] = useState("All Projects");
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -46,7 +47,6 @@ export default function Projects() {
     };
   }, [filter]);
 
-  console.log(loading);
 
   const filterItem = filter => {
     setFilter(`${filter}`);
@@ -93,8 +93,7 @@ export default function Projects() {
           // onAnimationComplete={() =>
           //   document.body.classList.remove("overflow-hidden")
           // }
-          >
-        </motion.div>
+        ></motion.div>
       </div>
     );
   }
@@ -123,7 +122,7 @@ export default function Projects() {
       <div>
         <motion.h1
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1, transition:{delay: 0.2} }}
+          animate={{ x: 0, opacity: 1, transition: { delay: 0.2 } }}
           exit={{
             x: -300,
             opacity: 0,
@@ -134,7 +133,7 @@ export default function Projects() {
         </motion.h1>
         <motion.p
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1, transition:{delay: 0.4} }}
+          animate={{ x: 0, opacity: 1, transition: { delay: 0.4 } }}
           exit={{
             x: -300,
             opacity: 0,
@@ -224,8 +223,9 @@ export default function Projects() {
                               : null}
                           </div> */}
                           <div className="rounded-[30px] w-full relative">
-                            <div className="w-full h-full absolute top-0 rounded-[30px] bg-transparent hover:bg-gold transition-all duration-300 flex justify-center items-center">
-                              CLick Me!
+                            <div
+                              className={`w-full h-full absolute top-0 rounded-[30px] bg-transparent opacity-0 hover:opacity-100 hover:bg-gold/80 transition-all duration-500 flex justify-center items-center text-white font-bold text-DMSerifDisplay text-[24px]`}>
+                              Learn More!
                             </div>
                             <img
                               className="rounded-[30px]"

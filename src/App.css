@@ -2,24 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-image[Attributes Style] {
-    x: 0;
-    y: 0;
-    width: 100%;
-    height: 100%;
-    clip-path: url(#shape);
-}
-
-image {
-    overflow: hidden;
-}
-
 a.active {
     border-bottom: thick;
     border-style: solid;
     border-color: #eabe7b;
     color: #eabe7b;
-    top: 60px;
+    width: 100%;
 }
 
 body {

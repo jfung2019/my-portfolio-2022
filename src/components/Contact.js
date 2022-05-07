@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
 import { motion } from "framer-motion";
@@ -8,6 +9,18 @@ import "../App.css";
 export default function Contact() {
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -52,7 +65,7 @@ export default function Contact() {
     <div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex text-white">
       <div className="m-auto">
         <div className="flex flex-col">
-          <div className="text-center w-full py-12 mt-8">
+          <div className="text-center w-full py-12 mt-0 md:mt-8">
             <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
               That's enough about me,
             </h1>
@@ -73,12 +86,12 @@ export default function Contact() {
                 x: -500,
                 transition: { duration: 0.5, delay: 0.3 },
               }}
-              className="mt-8 space-y-10">
-              <div className="flex flex-col space-y-5 relative ">
+              className="px-4 md:px-0 mt-8 space-y-10" ref={form} onSubmit={sendEmail}>
+              <div className="flex flex-col space-y-5 relative">
                 <input
                   placeholder="Subject"
                   className="bg-transparent border-b-2 focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></input>
-                <label className="cursor-text absolute left-0 top-[-50px]  text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
+                <label className="cursor-text absolute left-0 top-[-50px] text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
                   Subject
                 </label>
               </div>
@@ -108,7 +121,7 @@ export default function Contact() {
               </div>
               <div>
                 <button
-                  type="submit"
+                  type="submit" value="Send"
                   className="bg-gray-800 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B]">
                   Send
                 </button>
@@ -127,9 +140,9 @@ export default function Contact() {
               <div className="relative">
                 <div>
                   <img
-                    className="h-[600px] w-auto object-cover"
+                    className="h-[700px] w-auto object-cover"
                     src={sample}
-                    alt=""
+                    alt="blob"
                   />
                 </div>
                 <div className="absolute top-0 px-8 mt-4">

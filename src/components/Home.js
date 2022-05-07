@@ -15,7 +15,7 @@ export default function Home() {
   const onLeave = () => {
     setHover(false);
   };
-
+  
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -252,7 +252,10 @@ export default function Home() {
                       {letter}
                     </motion.div>
                   ))}
-                  <div className={`${hover ? "opacity-1" : "opacity-0"} transition-opacity duration-300 tooltip bottom-[-30px] right-[-70px] md:bottom-[-50px] md:right-[-20px] lg:bottom-[-80px] lg:right-[100px] absolute font-DMSerifDisplay text-[#eabe7b] text-[30px]`}>
+                  <div
+                    className={`${
+                      hover ? "opacity-1" : "opacity-0"
+                    } transition-opacity duration-300 tooltip bottom-[-30px] right-[-70px] md:bottom-[-50px] md:right-[-20px] lg:bottom-[-80px] lg:right-[100px] absolute font-DMSerifDisplay text-[#eabe7b] text-[30px]`}>
                     Developer
                   </div>
                 </h1>
