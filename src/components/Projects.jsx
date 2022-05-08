@@ -9,7 +9,6 @@ export default function Projects() {
   const [filter, setFilter] = useState("All Projects");
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -46,7 +45,6 @@ export default function Projects() {
       clearTimeout();
     };
   }, [filter]);
-
 
   const filterItem = filter => {
     setFilter(`${filter}`);
@@ -208,24 +206,26 @@ export default function Projects() {
                         to={/projects/ + project.slug.current}
                         key={project.slug.current}>
                         <div>
-                          <h1 className="w-full truncate text-[30px] text-white text-right mb-2 font-DMSerifDisplay py-4">
+                          <h1 className="w-full truncate text-[30px] text-white hover:text-gold text-right mb-2 font-DMSerifDisplay py-4">
                             {project.title}
                           </h1>
-                          {/* <div className="space-x-2 pt-2 mb-4 h-[100px]">
-                            {project.techUsed !== null
-                              ? project.techUsed.map((techUsed, index) => (
-                                  <button
-                                    className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay"
-                                    key={index}>
-                                    {techUsed}
-                                  </button>
-                                ))
-                              : null}
-                          </div> */}
                           <div className="rounded-[30px] w-full relative">
                             <div
-                              className={`w-full h-full absolute top-0 rounded-[30px] bg-transparent opacity-0 hover:opacity-100 hover:bg-gold/80 transition-all duration-500 flex justify-center items-center text-white font-bold text-DMSerifDisplay text-[24px]`}>
-                              Learn More!
+                              className={`w-full h-full absolute flex-col top-0 rounded-[30px] bg-transparent opacity-0 hover:opacity-100 hover:bg-gold transition-all duration-500 flex justify-center items-center text-white font-bold text-DMSerifDisplay text-[24px]`}>
+                              <h1 className="font-DMSerifDisplay text-[#202020]">
+                                Tech Used
+                              </h1>
+                              <div className="flex flex-wrap justify-center space-x-2 pt-2 mb-4">
+                                {project.techUsed !== null &&
+                                  project.techUsed.map((techUsed, index) => (
+                                    <button
+                                      className="bg-[#202020] rounded-[30px] px-2 py-1 mt-2 text-white font-DMSerifDisplay text-sm"
+                                      key={index}>
+                                      {techUsed}
+                                    </button>
+                                  ))}
+                              </div>
+                              <h1 className="font-DMSerifDisplay text-white">Learn More!</h1>
                             </div>
                             <img
                               className="rounded-[30px]"

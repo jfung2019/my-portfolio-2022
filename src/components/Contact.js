@@ -247,11 +247,15 @@ export default function Contact() {
                     If you wish to email me directly, please reach out to me via
                     email at{" "}
                     <span className="text-[#EABE7B]">
-                      {authorData.email}
+                      <a href={`mailto: ${authorData.email}`}>
+                        {authorData.email}
+                      </a>
                     </span>{" "}
                     or call me at{" "}
                     <span className="text-[#EABE7B]">
-                      {authorData.phoneNumber}
+                      <a href={`https://wa.me/852${authorData.phoneNumber}`} target="_blank" rel="noreferrer">
+                        {authorData.phoneNumber}
+                      </a>
                     </span>
                   </h1>
                 </div>
