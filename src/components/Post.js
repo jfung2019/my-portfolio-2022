@@ -42,12 +42,12 @@ export default function Post() {
   };
 
   const listItemVariant = {
-    hidden: { opacity: 0, x: -500 },
+    hidden: { opacity: 0, x: -1500 },
     show: {
       opacity: 1,
       y: 0,
       x: 0,
-      transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
+      transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1.5 },
     },
     exit: {
       opacity: 0,
