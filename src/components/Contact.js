@@ -2,19 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import sample from "../assets/svg/sample2.svg";
 import "../App.css";
-
-const Result = () => {
-  return (
-    <div className="bg-blue-200 p-8 absolute top-[1%] right-[25%] left-[25%] rounded-[25px]">
-      <h1 className="text-white font-bold text-[24px] text-center">
-        Your message has been sent successfully! Thank you!
-      </h1>
-    </div>
-  );
-};
 
 export default function Contact() {
   const [authorData, setAuthorData] = useState(null);
@@ -26,7 +16,7 @@ export default function Contact() {
     setSentMail(true);
     setTimeout(() => {
       setSentMail(false);
-    }, 3000);
+    }, 5000);
   }
 
   const sendEmail = e => {
@@ -54,8 +44,6 @@ export default function Contact() {
         }
       );
   };
-
-  // console.log("mail is sent?" + sentMail);
 
   useEffect(() => {
     setTimeout(() => {
@@ -99,8 +87,43 @@ export default function Contact() {
   return (
     <div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex text-white">
       <div className="m-auto">
-        {/* Email Notification for sucess on sending */}
-        {sentMail && <Result />}
+        {/* Email Notification Toast for sucess on sending */}
+        <AnimatePresence
+          initial={true}
+          exitBeforeEnter={true}
+          onExitComplete={() => console.log("exit")}>
+          {sentMail && (
+            <div className="w-full h-screen bg-[#191919] fixed top-0 left-0 z-50 flex">
+              <motion.div
+                initial={{ y: "-100vh" }}
+                animate={{
+                  y: 0,
+                  transition: { type: "spring", damping: 25, stiffness: 500 },
+                }}
+                exit={{ y: "-100vh" }}
+                className="w-[800px] bg-[#EABE7B]  p-8 m-auto rounded-[25px] z-50 flex justify-center items-center">
+                <div className="flex justify-center items-center">
+                  <img
+                    className="rounded-[25px] mx-auto w-[100px] mr-[10px]"
+                    src="https://c.tenor.com/b-pCRufrKp8AAAAC/thumbs-up.gif"
+                    alt=""
+                  />
+                  <h1 className="text-black-v1 font-bold text-[24px] text-center">
+                    Your message has been sent successfully. Thank you!
+                  </h1>
+                </div>
+                <div className="top-[5px] right-[20px] absolute">
+                  <button
+                    className="text-black-v1 hover:text-white font-DMSerifDisplay"
+                    onClick={() => setSentMail(false)}>
+                    Close
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+        {/* End of Email Notification Toast */}
 
         <div className="flex flex-col">
           <div className="text-center w-full py-12 mt-0 md:mt-8">
@@ -129,6 +152,7 @@ export default function Contact() {
               className="px-4 md:px-0 mt-8 space-y-10">
               <div className="flex flex-col space-y-5 relative">
                 <input
+                  required
                   id="subject"
                   name="subject"
                   placeholder="Subject"
@@ -139,6 +163,7 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <input
+                  required
                   id="user_name"
                   name="user_name"
                   placeholder="Your Name"
@@ -149,6 +174,8 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <input
+                  required
+                  type="email"
                   id="email"
                   name="email"
                   placeholder="Your Email"
@@ -159,19 +186,20 @@ export default function Contact() {
               </div>
               <div className="flex flex-col space-y-5 relative ">
                 <textarea
+                  required
                   id="message"
                   name="message"
                   placeholder="Share me your thoughts"
                   className="bg-transparent border-b-2 h-[40px] focus-within:border-[#EABE7B] text-[24px] font-DMSerifDisplay focus:outline-none peer placeholder-transparent"></textarea>
                 <label className="cursor-text absolute left-0 top-[-50px]  text-[24px] font-DMSerifDisplay transition-all peer-placeholder-shown:text-[24px] peer-placeholder-shown:text-white/75 peer-placeholder-shown:-top-5">
-                  Tell me about yourself
+                  Your Message
                 </label>
               </div>
               <div>
                 <button
                   type="submit"
                   value="Send"
-                  className="bg-gray-800 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B]">
+                  className="bg-gray-800 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B] hover:text-black-v1">
                   Send
                 </button>
               </div>
