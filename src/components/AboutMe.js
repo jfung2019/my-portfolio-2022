@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import gear from "../assets/images/gear.png";
 import arrow from "../assets/images/arrow.png";
 
 export default function AboutMe() {
   const [authorData, setAuthorData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { ref, inView } = useInView();
+  const animationConveyerBelt = useAnimation();
+
+  useEffect(() => {
+    console.log("Use effect hook, inview =", inView);
+    if (inView) {
+      animationConveyerBelt.start({
+        opacity: 1,
+        transition: { delay: 0.1, duration: 1 },
+      });
+    }
+    if (!inView) {
+      animationConveyerBelt.start({
+        opacity: 0,
+        transition: { delay: 0.1, duration: 1 },
+      });
+    }
+  }, [animationConveyerBelt, inView]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,8 +63,7 @@ export default function AboutMe() {
               duration: 1.5,
               ease: [0.25, 0.25, 0.13, 1],
             },
-          }}>
-        </motion.div>
+          }}></motion.div>
       </div>
     );
   }
@@ -159,70 +177,30 @@ export default function AboutMe() {
           </div>
         </div>
         {/* Conveyer belt title */}
-        <div className="w-full pl-[40px] pr-[25px] mt-8">
-          <div className="flex justify-between space-x-4">
-            <div className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[40px] lg:pl-[120px] font-DMSerifDisplay">
-              Tech Skills
-            </div>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="mt-[30px] md:mt-[23px] lg:mt-[17px] w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
-              <img src={gear} alt="testing" />
-            </motion.div>
-          </div>
-        </div>
-        {/* conveyer belt */}
-        <div className="w-full overflow-hidden px-[20px]">
-          <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
-            <motion.div
-              className="min-w-min hidden space-x-1 md:space-x-4 md:flex"
-              initial={{ x: "100%" }}
-              animate={{ x: "-100%" }}
-              transition={{ ease: "linear", duration: 30, loop: Infinity }}>
-              {authorData.techSkills.map((techSkills, index) => (
-                <div key={index}>
-                  <img
-                    loading="lazy"
-                    className="object-cover h-auto w-[150px] min-w-[45px]"
-                    src={techSkills}
-                    alt="techSkills"
-                  />
-                </div>
-              ))}
-            </motion.div>
-            <motion.div
-              className="min-w-min flex space-x-1 md:space-x-4 md:hidden"
-              initial={{ x: "50%" }}
-              animate={{ x: "-100%" }}
-              transition={{ ease: "linear", duration: 30, loop: Infinity }}>
-              {authorData.techSkills.map((techSkills, index) => (
-                <div key={index}>
-                  <img
-                    loading="lazy"
-                    className="object-cover h-auto w-[150px] min-w-[45px]"
-                    src={techSkills}
-                    alt="techSkills"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-          <div>
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
-              <img loading="lazy" src={gear} alt="testing" />
-            </motion.div>
-          </div>
-          {/* conveyer belt 2 bellow */}
-          <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
-            <AnimatePresence>
+        <motion.div
+          ref={ref}
+          animate={animationConveyerBelt}
+          initial={{ opacity: 0 }}>
+          <div className="w-full pl-[40px] pr-[25px] mt-8">
+            <div className="flex justify-between space-x-4">
+              <div className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[40px] lg:pl-[120px] font-DMSerifDisplay">
+                Tech Skills
+              </div>
               <motion.div
-                className="min-w-min flex space-x-1 md:space-x-4"
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
+                animate={{ rotate: 360 }}
+                transition={{ ease: "linear", duration: 5, repeat: Infinity }}
+                className="mt-[30px] md:mt-[23px] lg:mt-[17px] w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
+                <img src={gear} alt="testing" />
+              </motion.div>
+            </div>
+          </div>
+          {/* conveyer belt */}
+          <div className="w-full overflow-hidden px-[20px]">
+            <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
+              <motion.div
+                className="min-w-min hidden space-x-1 md:space-x-4 md:flex"
+                initial={{ x: "100%" }}
+                animate={{ x: "-100%" }}
                 transition={{ ease: "linear", duration: 30, loop: Infinity }}>
                 {authorData.techSkills.map((techSkills, index) => (
                   <div key={index}>
@@ -235,17 +213,62 @@ export default function AboutMe() {
                   </div>
                 ))}
               </motion.div>
-            </AnimatePresence>
+              <motion.div
+                className="min-w-min flex space-x-1 md:space-x-4 md:hidden"
+                initial={{ x: "50%" }}
+                animate={{ x: "-100%" }}
+                transition={{ ease: "linear", duration: 30, loop: Infinity }}>
+                {authorData.techSkills.map((techSkills, index) => (
+                  <div key={index}>
+                    <img
+                      loading="lazy"
+                      className="object-cover h-auto w-[150px] min-w-[45px]"
+                      src={techSkills}
+                      alt="techSkills"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+            <div>
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ ease: "linear", duration: 5, repeat: Infinity }}
+                className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px]">
+                <img loading="lazy" src={gear} alt="testing" />
+              </motion.div>
+            </div>
+            {/* conveyer belt 2 bellow */}
+            <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
+              <AnimatePresence>
+                <motion.div
+                  className="min-w-min flex space-x-1 md:space-x-4"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{ ease: "linear", duration: 30, loop: Infinity }}>
+                  {authorData.techSkills.map((techSkills, index) => (
+                    <div key={index}>
+                      <img
+                        loading="lazy"
+                        className="object-cover h-auto w-[150px] min-w-[45px]"
+                        src={techSkills}
+                        alt="techSkills"
+                      />
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <div className="w-full flex justify-end">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ ease: "linear", duration: 5, repeat: Infinity }}
+                className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px] right-0">
+                <img loading="lazy" src={gear} alt="testing" />
+              </motion.div>
+            </div>
           </div>
-          <div className="w-full flex justify-end">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-              className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] lg:w-[120px] lg:h-[120px] right-0">
-              <img loading="lazy" src={gear} alt="testing" />
-            </motion.div>
-          </div>
-        </div>
+        </motion.div>
 
         {/* Timeline */}
         <div className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8">
