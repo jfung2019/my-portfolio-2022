@@ -127,12 +127,28 @@ export default function Contact() {
 
         <div className="flex flex-col">
           <div className="text-center w-full py-12 mt-0 md:mt-8">
-            <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
-              That's enough about me,
-            </h1>
-            <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
-              Let's talk about you!
-            </h1>
+            <motion.div
+              initial={{ y: 100, scale: 0, x: -100 }}
+              animate={{
+                y: 0,
+                scale: 1,
+                x: [-400, 0],
+                transition: { duration: 0.5 },
+              }}
+              exit={{
+                y: 0,
+                scale: 0,
+                x: -500,
+                transition: { duration: 0.5, delay: 0.3 },
+              }}>
+              <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
+                That's enough about me,
+              </h1>
+              <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
+                Let's talk about you!
+              </h1>
+            </motion.div>
+
             <motion.form
               ref={form}
               onSubmit={sendEmail}
