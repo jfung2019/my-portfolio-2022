@@ -242,10 +242,7 @@ export default function Contact() {
                   <h1 className="mt-[25%] text-[32px] md:text-[44px] lg:text-[64px] xl:text-[56px] 2xl:text-[64px] font-bold text-white font-DMSerifDisplay text-center">
                     Contact Me
                   </h1>
-                  <h1 className="mt-8 ml-8 text-[24px] font-DMSerifDisplay text-center">
-                    Don’t hesitate to contact me!
-                  </h1>
-                  <h1 className="ml-8 text-[24px] font-DMSerifDisplay text-center">
+                  <h1 className="mt-8 ml-8 text-[24px] font-DMSerifDisplay text-center px-8">
                     {" "}
                     If you wish to email me directly, please reach out to me via
                     email at{" "}
