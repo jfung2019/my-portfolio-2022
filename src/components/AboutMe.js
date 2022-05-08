@@ -9,24 +9,51 @@ import arrow from "../assets/images/arrow.png";
 export default function AboutMe() {
   const [authorData, setAuthorData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Animation
   const { ref, inView } = useInView();
+  const [ref2, inView2] = useInView();
   const animationConveyerBelt = useAnimation();
+  const animationConveyerBelt2 = useAnimation({
+    threshold: 0.8,
+  });
+  const animationExperienceTitle = useAnimation();
 
   useEffect(() => {
     console.log("Use effect hook, inview =", inView);
+    console.log("Use effect hook, inview2 =", inView2);
     if (inView) {
       animationConveyerBelt.start({
         opacity: 1,
-        transition: { delay: 0.1, duration: 1 },
+        transition: { delay: 0.1, duration: 1.5 },
       });
     }
     if (!inView) {
       animationConveyerBelt.start({
         opacity: 0,
-        transition: { delay: 0.1, duration: 1 },
+        transition: { duration: 0.5 },
       });
     }
-  }, [animationConveyerBelt, inView]);
+    if (inView2) {
+      animationConveyerBelt2.start({
+        opacity: 1,
+        transition: { delay: 0.2, duration: 1.5 },
+      });
+    }
+    if (!inView2) {
+      animationConveyerBelt2.start({
+        opacity: 0,
+        transition: { duration: 0.5 },
+      });
+    }
+  }, [
+    animationConveyerBelt,
+    animationConveyerBelt2,
+    inView,
+    inView2,
+    animationExperienceTitle,
+  ]);
+  // End of Animation
 
   useEffect(() => {
     setTimeout(() => {
@@ -96,42 +123,6 @@ export default function AboutMe() {
                 src="https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/aboutMeProfileblacker.webp"
                 alt=""
               />
-              {/* <div className="w-full h-auto relative">
-                <svg
-                  id="visual"
-                  viewBox="0 0 500 500"
-                  height="100%"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.1">
-                  <g>
-                    <motion.path
-                      d="M409.06419,322.5266Q395.0532,395.0532,322.5266,445.11739Q250,495.18159,163.51944,459.07135Q77.03888,422.96112,82.39949,336.48056Q87.7601,250,115.64271,196.76266Q143.52532,143.52532,196.76266,76.83657Q250,10.14783,323.24578,56.82813Q396.49156,103.50844,409.78338,176.75422Q423.07519,250,409.06419,322.5266Z"
-                      fill="#EABE7B"
-                      animate={{
-                        d: [
-                          "M409.06419,322.5266Q395.0532,395.0532,322.5266,445.11739Q250,495.18159,163.51944,459.07135Q77.03888,422.96112,82.39949,336.48056Q87.7601,250,115.64271,196.76266Q143.52532,143.52532,196.76266,76.83657Q250,10.14783,323.24578,56.82813Q396.49156,103.50844,409.78338,176.75422Q423.07519,250,409.06419,322.5266Z",
-                          "M408.24461,332.63257Q415.26513,415.26513,332.63257,434.71568Q250,454.16622,179.33614,422.74697Q108.67228,391.32772,65.87585,320.66386Q23.07942,250,63.27221,176.73251Q103.46501,103.46501,176.73251,63.02288Q250,22.58075,311.86507,74.4253Q373.73015,126.26985,387.47712,188.13493Q401.22409,250,408.24461,332.63257Z",
-                          "M418.08664,320.33435Q390.6687,390.6687,320.33435,427.91946Q250,465.17023,188.27506,419.31005Q126.55013,373.44987,106.38448,311.72494Q86.21883,250,84.09726,165.98785Q81.9757,81.9757,165.98785,53.98938Q250,26.00305,311.1687,76.83282Q372.3374,127.6626,408.92099,188.8313Q445.50458,250,418.08664,320.33435Z",
-                          "M423.42552,332.41134Q414.82268,414.82268,332.41134,424.30554Q250,433.78841,170.96572,420.92848Q91.93144,408.06856,46.07152,329.03428Q0.21159,250,66.88003,191.77423Q133.54846,133.54846,191.77423,102.82861Q250,72.10876,305.00592,106.04846Q360.01185,139.98815,396.0201,194.99408Q432.02836,250,423.42552,332.41134Z",
-                          "M409.06419,322.5266Q395.0532,395.0532,322.5266,445.11739Q250,495.18159,163.51944,459.07135Q77.03888,422.96112,82.39949,336.48056Q87.7601,250,115.64271,196.76266Q143.52532,143.52532,196.76266,76.83657Q250,10.14783,323.24578,56.82813Q396.49156,103.50844,409.78338,176.75422Q423.07519,250,409.06419,322.5266Z",
-                        ],
-                      }}
-                      transition={{
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        duration: 10,
-                      }}></motion.path>
-                  </g>
-                </svg>
-                <div className="absolute top-0">
-                  <img loading="lazy"
-                    className="object-fit h-auto w-auto min-w-[500px] pr-0 md:pl-[0px] lg:pr-[150px]"
-                    src="https://raw.githubusercontent.com/jfung2019/myPortfolioImages/main/portfolio%20images/techSkills/aboutMeHeader.png"
-                    alt=""
-                  />
-                </div>
-              </div> */}
             </motion.div>
             <motion.div
               className="w-full lg:w-1/2 m-auto lg:ml-[-10px]"
@@ -271,7 +262,11 @@ export default function AboutMe() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8">
+        <motion.div
+          className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8"
+          ref={ref2}
+          animate={animationConveyerBelt2}
+          initial={{ opacity: 0 }}>
           <div className="text-[40px] md:text-[70px] lg:text-[92px] mb-4 font-bold text-[#EABE7B] font-DMSerifDisplay">
             Experience
           </div>
@@ -280,9 +275,9 @@ export default function AboutMe() {
               authorData.experience.map((experience, index) => (
                 <li className="mb-10 ml-4" key={index}>
                   <div className="absolute w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-white rounded-full mt-0 -left-[23px] md:-left-[33px] border border-white text-white"></div>
-                  <time className="ml-4 md:ml-[40px] text-[30px] md:text-[56px] font-bold leading-none text-white font-DMSerifDisplay">
+                  <div className="ml-4 md:ml-[40px] text-[30px] md:text-[56px] font-bold leading-none text-white font-DMSerifDisplay">
                     {experience.date}
-                  </time>
+                  </div>
                   <div className="mx-4 md:mx-[40px] mt-4 md:mt-8 bg-[#191919] p-4 rounded-md">
                     <h3 className="text-2xl text-white font-DMSerifDisplay">
                       {experience.title}
@@ -302,7 +297,7 @@ export default function AboutMe() {
                 </li>
               ))}
           </ol>
-        </div>
+        </motion.div>
       </div>
     </>
   );
