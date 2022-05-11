@@ -12,6 +12,14 @@ export default {
       title: 'About Me',
     },
     {
+      name: 'projectPage',
+      title: 'Project Page',
+    },
+    {
+      name: 'blogPage',
+      title: 'Blog Page',
+    },
+    {
       name: 'contactPage',
       title: 'Contact Page',
     },
@@ -171,7 +179,38 @@ export default {
       name: "bio",
       title: "Bio",
       type: "array",
-      group: 'langdingPage',
+      description: "Used in about me page",
+      group: 'aboutMe',
+      of: [
+        {
+          title: "Block",
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
+          lists: [],
+        },
+      ],
+    },
+    {
+      name: "bioForProjectPage",
+      title: "Bio Project Page",
+      type: "array",
+      description: "Used in Project Page",
+      group: 'projectPage',
+      of: [
+        {
+          title: "Block",
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
+          lists: [],
+        },
+      ],
+    },
+    {
+      name: "bioForBlogPage",
+      title: "Bio Project Page",
+      type: "array",
+      description: "Used in Blog Page",
+      group: 'blogPage',
       of: [
         {
           title: "Block",

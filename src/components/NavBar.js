@@ -8,7 +8,7 @@ export default function NavBar() {
 
   useEffect(() => {
     // Close the navigation panel
-    setOpen(false); 
+    setOpen(false);
   }, [pathname]);
 
   useEffect(() => {}, [isOpen]);

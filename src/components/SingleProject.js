@@ -47,8 +47,6 @@ export default function SingleProject() {
       .catch(console.error);
   }, [slug]);
 
-  console.log(singleProjectData);
-
   if (!singleProjectData || loading === true) {
     return (
       <div className="w-full h-screen fixed align-middle z-30">
@@ -108,7 +106,10 @@ export default function SingleProject() {
                   opacity: 1,
                   transition: { delay: 0.5, duration: 1.5 },
                 }}
-                exit={{ opacity: 0, transition: { ease: "linear", duration: 0.5 } }}
+                exit={{
+                  opacity: 0,
+                  transition: { ease: "linear", duration: 0.5 },
+                }}
                 className="w-full mt-4 lg:mt-8 pr-0 lg:pr-14">
                 <h1
                   className={`text-left ${
@@ -192,7 +193,11 @@ export default function SingleProject() {
                 ease: [0.43, 0.13, 0.23, 0.96],
               },
             }}
-            exit={{ opacity: 0, x: "100vw", transition: { ease: "linear", duration: 0.3 } }}
+            exit={{
+              opacity: 0,
+              x: "100vw",
+              transition: { ease: "linear", duration: 0.3 },
+            }}
             viewport={{ once: true }}
             className="w-full text-white mt-8 lg:mt-24">
             <h1 className="font-DMSerifDisplay text-[24px]">Role</h1>
@@ -218,7 +223,11 @@ export default function SingleProject() {
               ease: [0.43, 0.13, 0.23, 0.96],
             },
           }}
-          exit={{ opacity: 0, x: "-100vw", transition: { ease: "linear", duration: 0.3 } }}
+          exit={{
+            opacity: 0,
+            x: "-100vw",
+            transition: { ease: "linear", duration: 0.3 },
+          }}
           viewport={{ once: true }}
           className="w-full text-white mt-8 mb-8 lg:mb-[200px]">
           <h1 className="font-DMSerifDisplay text-[24px]">Background</h1>
@@ -323,22 +332,6 @@ export default function SingleProject() {
             </div>
           </motion.div>
         )}
-
-        {/* reference data */}
-        {/* title */}
-        {/* role */}
-        {/* layout */}
-        {/* main image for thumbnail */}
-        {/* Single project post image header*/}
-        {/* published at */}
-        {/* body background*/}
-        {/* Project Data */}
-        {/* Title */}
-        {/* Image Gallery Url */}
-        {/* Gif Gallery Url */}
-        {/* Videos Gallery Url */}
-        {/* Paragraph */}
-        {/* Date */}
       </div>
     </>
   );

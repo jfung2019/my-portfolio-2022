@@ -59,8 +59,6 @@ export default function AboutMe() {
   };
   // End of animation
 
-  console.log(authorData);
-
   if (!authorData.length < 0 || loading === true) {
     return (
       <div className="w-full h-screen fixed align-middle z-30">
@@ -82,8 +80,6 @@ export default function AboutMe() {
       </div>
     );
   }
-
-  console.log(authorData);
 
   return (
     <>

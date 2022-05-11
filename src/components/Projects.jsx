@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import arrow from "../assets/images/arrow.png";
+import BlockContent from "@sanity/block-content-to-react";
 
 export default function Projects() {
   const [projectData, setProjectData] = useState(null);
+  const [authorData, setAuthorData] = useState(null);
   const [filter, setFilter] = useState("All Projects");
   const [loading, setLoading] = useState(true);
 
   // Animate card on press filter
-  const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+  const [animateCard, setAnimateCard] = useState([
+    { y: 0, opacity: 1, transition: { delay: 0.6 } },
+  ]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,7 +42,8 @@ export default function Projects() {
             },
             alt 
           },
-          publishedAt
+          publishedAt,
+          "bio": author-> bioForProjectPage,
         }`
       )
       .then(data => setProjectData(data))
@@ -49,29 +54,25 @@ export default function Projects() {
     };
   }, [filter]);
 
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "author"]{
+          bioForProjectPage,
+        }`
+      )
+      .then(data => setAuthorData(data[0]))
+      .catch(console.error);
+  }, []);
+
   const filterItem = filter => {
     setFilter(`${filter}`);
-  };
 
-  // animation properties
-  const listItemContainerVariant = {
-    show: {
-      transition: { staggerChildren: 0.35, delayChildren: 0.3 },
-    },
-  };
-
-  const listItemVariant = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
-    },
-    exit: {
-      opacity: 0,
-      x: "100vw",
-      transition: { ease: "easeInOut", duration: 0.8 },
-    },
+    // Change animation properties on click
+    setAnimateCard([{ y: 100, opacity: 0 }]);
+    setTimeout(() => {
+      setAnimateCard([{ y: 0, opacity: 1 }]);
+    }, 500);
   };
 
   if (!projectData || loading === true) {
@@ -95,8 +96,6 @@ export default function Projects() {
       </div>
     );
   }
-
-  console.log(projectData);
 
   return (
     <div className="px-8 md:px-[60px] lg:px-[160px] relative overflow-hidden">
@@ -129,7 +128,7 @@ export default function Projects() {
           className="font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[92px] font-bold text-gold">
           My Work
         </motion.h1>
-        <motion.p
+        <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{
@@ -138,11 +137,12 @@ export default function Projects() {
             transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.7 },
           }}
           className="font-DmSans text-white">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium,
-          architecto et distinctio ex sequi perferendis excepturi cumque
-          repellat nostrum, exercitationem quas error quos eligendi deserunt
-          quibusdam blanditiis asperiores, saepe nihil?
-        </motion.p>
+          <BlockContent
+            blocks={authorData.bioForProjectPage}
+            projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
+            dataset="production"
+          />
+        </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.3 } }}
@@ -213,82 +213,85 @@ export default function Projects() {
           </button>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-14 mb-14"
-          variants={listItemContainerVariant}
-          initial="hidden"
-          animate="show"
-          exit="exit">
-          <AnimatePresence>
-            {projectData &&
-              projectData.map((project, index) => (
-                <div key={index} className="px-2">
-                  <motion.div variants={listItemVariant}>
-                    <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
-                      <Link
-                        to={/projects/ + project.slug.current}
-                        key={project.slug.current}>
-                        <div>
-                          <h1 className="w-full truncate text-[30px] text-white hover:text-gold text-right mb-2 font-DMSerifDisplay py-4">
-                            {project.title}
-                          </h1>
-                          <div className="rounded-[30px] w-full relative">
-                            <div
-                              className={`w-full h-full absolute flex-col top-0 rounded-[30px] bg-transparent opacity-0 hover:opacity-100 hover:bg-gold transition-all duration-500 flex justify-center items-center text-white font-bold text-DMSerifDisplay text-[24px]`}>
-                              <h1 className="font-DMSerifDisplay text-[#202020]">
-                                Tech Used
-                              </h1>
-                              <div className="flex flex-wrap justify-center space-x-2 pt-2 mb-4">
-                                {project.techUsed !== null &&
-                                  project.techUsed.map((techUsed, index) => (
-                                    <button
-                                      className="bg-[#202020] rounded-[30px] px-2 py-1 mt-2 text-white font-DMSerifDisplay text-sm"
-                                      key={index}>
-                                      {techUsed}
-                                    </button>
-                                  ))}
-                              </div>
-                              <h1 className="font-DMSerifDisplay text-white">
-                                Learn More!
-                              </h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-14 mb-14">
+          {projectData &&
+            projectData.map((project, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 0 }}
+                whileInView={animateCard}
+                transition={{ duration: 0.5, delayChildren: 0.5 }}
+                exit={{
+                  opacity: 0,
+                  x: "100vw",
+                  transition: { ease: "easeInOut", duration: 0.8 },
+                }}
+                key={index}
+                className="px-2">
+                <div>
+                  <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
+                    <Link
+                      to={/projects/ + project.slug.current}
+                      key={project.slug.current}>
+                      <div>
+                        <h1 className="w-full truncate text-[30px] text-white hover:text-gold text-right mb-2 font-DMSerifDisplay py-4">
+                          {project.title}
+                        </h1>
+                        <div className="rounded-[30px] w-full relative">
+                          <div
+                            className={`w-full h-full absolute flex-col top-0 rounded-[30px] bg-transparent opacity-0 hover:opacity-100 hover:bg-gold transition-all duration-500 flex justify-center items-center text-white font-bold text-DMSerifDisplay text-[24px]`}>
+                            <h1 className="font-DMSerifDisplay text-[#202020]">
+                              Tech Used
+                            </h1>
+                            <div className="flex flex-wrap justify-center space-x-2 pt-2 mb-4">
+                              {project.techUsed !== null &&
+                                project.techUsed.map((techUsed, index) => (
+                                  <button
+                                    className="bg-[#202020] rounded-[30px] px-2 py-1 mt-2 text-white font-DMSerifDisplay text-sm"
+                                    key={index}>
+                                    {techUsed}
+                                  </button>
+                                ))}
                             </div>
-                            <img
-                              className="rounded-[30px]"
-                              src={project.mainImage.asset.url}
-                              alt={project.mainImage.alt}
-                            />
+                            <h1 className="font-DMSerifDisplay text-white">
+                              Learn More!
+                            </h1>
                           </div>
+                          <img
+                            className="rounded-[30px]"
+                            src={project.mainImage.asset.url}
+                            alt={project.mainImage.alt}
+                          />
                         </div>
-                      </Link>
-
-                      <div className="space-x-2 pt-2 mb-4">
-                        {project.demoUrl !== null ? (
-                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
-                            <a
-                              href={project.demoUrl}
-                              target="_blank"
-                              rel="noreferrer">
-                              Demo
-                            </a>
-                          </button>
-                        ) : null}
-                        {project.codeUrl !== null ? (
-                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
-                            <a
-                              href={project.codeUrl}
-                              target="_blank"
-                              rel="noreferrer">
-                              Git Hub
-                            </a>
-                          </button>
-                        ) : null}
                       </div>
+                    </Link>
+
+                    <div className="space-x-2 pt-2 mb-4">
+                      {project.demoUrl !== null ? (
+                        <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noreferrer">
+                            Demo
+                          </a>
+                        </button>
+                      ) : null}
+                      {project.codeUrl !== null ? (
+                        <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
+                          <a
+                            href={project.codeUrl}
+                            target="_blank"
+                            rel="noreferrer">
+                            Git Hub
+                          </a>
+                        </button>
+                      ) : null}
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
-              ))}
-          </AnimatePresence>
-        </motion.div>
+              </motion.div>
+            ))}
+        </div>
       </div>
     </div>
   );

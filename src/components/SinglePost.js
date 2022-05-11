@@ -35,8 +35,6 @@ export default function SinglePost() {
       .catch(console.error);
   }, [slug]);
 
-  console.log(singlePostData);
-
   if (!singlePostData || loading === true) {
     return (
       <div className="w-full h-screen fixed align-middle z-30">
