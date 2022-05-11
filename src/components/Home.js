@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from "../client";
-import BlockContent from "@sanity/block-content-to-react";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
   const onLeave = () => {
     setHover(false);
   };
-  
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -51,31 +50,26 @@ export default function Home() {
       .catch(console.error);
   }, []);
 
-  const spanVariants = {
-    visible: { y: 0, scaleY: 1 },
-    hover: {
-      y: [-1, -2, -2.8, 0.9, 0],
-      scaleY: [1, 1.3, 0.8, 1, 1.2],
-      color: "red",
-    },
-  };
-
   if (!authorData || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.5, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.5,
-            y: ["100vh", "5vh", "5vh", "0vh"],
+            y: ["100vh", "0vh", "0vh", "0vh"],
             opacity: [1, 1, 1, 1, 0],
             transition: {
               duration: 2,
               ease: "easeInOut",
               times: [0, 0.5, 0.3, 1.2],
             },
-          }}></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            Home
+          </h1>
+        </motion.div>
       </div>
     );
   }

@@ -39,18 +39,22 @@ export default function SinglePost() {
 
   if (!singlePostData || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "100vh"],
+            y: ["100vh", "0vh", "0vh", "130vh"],
             transition: {
               duration: 1.5,
-              ease: [0.25, 0.25, 0.13, 1],
+              ease: [0.25, 0.25, 0.25, 0.75],
             },
-          }}></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            Blog Post
+          </h1>
+        </motion.div>
       </div>
     );
   }
@@ -59,7 +63,6 @@ export default function SinglePost() {
     <>
       <div className="w-full px-8 md:px-[80px] lg:px-[160px] relative overflow-hidden text-white">
         <div className="">
-
           {/* Title */}
           <h1 className="font-DMSerifDisplay text-[40px] md:text-[70px] lg:text-[92px] font-bold text-gold">
             My Blog Post
@@ -80,16 +83,15 @@ export default function SinglePost() {
         </div>
 
         <div className="w-full flex justify-center text-white font-DmSans mt-8">
-          <div className="">
+          <div className="mb-24">
             <BlockContent
-              className="prose md:prose-lg lg:prose-xl text-white prose-headings:font-DMSerifDisplay prose-headings:text-white max-w-none prose-img:mx-auto "
+              className="prose md:prose-lg lg:prose-xl text-white prose-headings:font-DMSerifDisplay prose-headings:text-white max-w-none prose-img:max-w-xl"
               blocks={singlePostData.body}
-              projectId="22zf6zhh"
+              projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
               dataset="production"
             />
           </div>
         </div>
-        
       </div>
     </>
   );

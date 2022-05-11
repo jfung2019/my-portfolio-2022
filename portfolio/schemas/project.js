@@ -123,18 +123,6 @@ export default {
               of: [{ type: "string" }],
             },
             {
-              name: "gifUrl",
-              title: "Gif Url",
-              type: "array",
-              of: [{ type: "string" }],
-            },
-            {
-              name: "videosUrl",
-              title: "Videos url",
-              type: "array",
-              of: [{ type: "string" }],
-            },
-            {
               name: "paragraph",
               title: "Paragraph",
               type: "array",

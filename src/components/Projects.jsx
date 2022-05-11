@@ -9,6 +9,9 @@ export default function Projects() {
   const [filter, setFilter] = useState("All Projects");
   const [loading, setLoading] = useState(true);
 
+  // Animate card on press filter
+  const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -53,7 +56,7 @@ export default function Projects() {
   // animation properties
   const listItemContainerVariant = {
     show: {
-      transition: { staggerChildren: 0.35 },
+      transition: { staggerChildren: 0.35, delayChildren: 0.3 },
     },
   };
 
@@ -66,32 +69,29 @@ export default function Projects() {
     },
     exit: {
       opacity: 0,
-      y: -100,
+      x: "100vw",
       transition: { ease: "easeInOut", duration: 0.8 },
     },
   };
 
   if (!projectData || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "100vh"],
+            y: ["100vh", "0vh", "0vh", "130vh"],
             transition: {
               duration: 1.5,
-              ease: [0.25, 0.25, 0.13, 1],
+              ease: [0.25, 0.25, 0.25, 0.75],
             },
-          }}
-          // onAnimationStart={() =>
-          //   document.body.classList.add("overflow-hidden")
-          // }
-          // onAnimationComplete={() =>
-          //   document.body.classList.remove("overflow-hidden")
-          // }
-        ></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            Projects
+          </h1>
+        </motion.div>
       </div>
     );
   }
@@ -120,7 +120,7 @@ export default function Projects() {
       <div>
         <motion.h1
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1, transition: { delay: 0.2 } }}
+          animate={{ x: 0, opacity: 1 }}
           exit={{
             x: -300,
             opacity: 0,
@@ -131,11 +131,11 @@ export default function Projects() {
         </motion.h1>
         <motion.p
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1, transition: { delay: 0.4 } }}
+          animate={{ x: 0, opacity: 1 }}
           exit={{
             x: -300,
             opacity: 0,
-            transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1 },
+            transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.7 },
           }}
           className="font-DmSans text-white">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium,
@@ -145,45 +145,68 @@ export default function Projects() {
         </motion.p>
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 1, transition: { delay: 0.3 } }}
           exit={{
             opacity: 0,
-            y: -100,
             transition: { duration: 0.7 },
           }}
           className="mt-8">
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`p-4 rounded-[30px] mr-1 ${
+              filter === "All Projects"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="All Projects"
             onClick={e => filterItem(e.target.value)}>
             All Projects
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`${
+              filter === "Games"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } p-4 rounded-[30px] mr-1 font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="Games"
             onClick={e => filterItem(e.target.value)}>
             Games
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`${
+              filter === "Web / Mobile App"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } p-4 rounded-[30px] mr-1 font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="Web / Mobile App"
             onClick={e => filterItem(e.target.value)}>
             Web / Mobile App
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`${
+              filter === "3D Animation"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } p-4 rounded-[30px] mr-1 font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="3D Animation"
             onClick={e => filterItem(e.target.value)}>
             3D Animation
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`${
+              filter === "VR"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } p-4 rounded-[30px] mr-1 font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="VR"
             onClick={e => filterItem(e.target.value)}>
             VR Projects
           </button>
           <button
-            className="bg-[#191919] p-4 rounded-[30px] mr-1 text-white font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-300 hover:text-black-v1"
+            className={`${
+              filter === "Photography"
+                ? "bg-gold text-black-v1"
+                : "bg-[#191919] text-white"
+            } p-4 rounded-[30px] mr-1 font-DMSerifDisplay mt-2 hover:bg-gold transition-all duration-500 hover:text-black-v1`}
             value="Photography"
             onClick={e => filterItem(e.target.value)}>
             Photography
@@ -200,7 +223,7 @@ export default function Projects() {
             {projectData &&
               projectData.map((project, index) => (
                 <div key={index} className="px-2">
-                  <motion.div variants={listItemVariant} layout>
+                  <motion.div variants={listItemVariant}>
                     <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
                       <Link
                         to={/projects/ + project.slug.current}
@@ -225,7 +248,9 @@ export default function Projects() {
                                     </button>
                                   ))}
                               </div>
-                              <h1 className="font-DMSerifDisplay text-white">Learn More!</h1>
+                              <h1 className="font-DMSerifDisplay text-white">
+                                Learn More!
+                              </h1>
                             </div>
                             <img
                               className="rounded-[30px]"
@@ -238,7 +263,7 @@ export default function Projects() {
 
                       <div className="space-x-2 pt-2 mb-4">
                         {project.demoUrl !== null ? (
-                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b]">
+                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
                             <a
                               href={project.demoUrl}
                               target="_blank"
@@ -248,7 +273,7 @@ export default function Projects() {
                           </button>
                         ) : null}
                         {project.codeUrl !== null ? (
-                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b]">
+                          <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
                             <a
                               href={project.codeUrl}
                               target="_blank"

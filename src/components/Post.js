@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import arrow from "../assets/images/arrow.png";
 
 export default function Post() {
@@ -34,45 +34,26 @@ export default function Post() {
       .catch(console.error);
   }, []);
 
-  // animation properties
-  const listItemContainerVariant = {
-    show: {
-      transition: { staggerChildren: 0.35 },
-    },
-  };
-
-  const listItemVariant = {
-    hidden: { opacity: 0, x: -1500 },
-    show: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 1.5 },
-    },
-    exit: {
-      opacity: 0,
-      y: -100,
-      x: 500,
-      transition: { ease: "easeInOut", duration: 0.8 },
-    },
-  };
-
   console.log(postData);
 
   if (!postData || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "100vh"],
+            y: ["100vh", "0vh", "0vh", "130vh"],
             transition: {
               duration: 1.5,
-              ease: [0.25, 0.25, 0.13, 1],
+              ease: [0.25, 0.25, 0.25, 0.75],
             },
-          }}></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            Blogs
+          </h1>
+        </motion.div>
       </div>
     );
   }
@@ -101,8 +82,8 @@ export default function Post() {
 
         <div>
           <motion.h1
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, transition: { type: "spring", duration: 0.7 } }}
             exit={{
               x: -300,
               opacity: 0,
@@ -112,8 +93,8 @@ export default function Post() {
             My Blog Post
           </motion.h1>
           <motion.p
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, transition: { type: "spring", duration: 0.7 } }}
             exit={{
               x: -300,
               opacity: 0,
@@ -126,17 +107,27 @@ export default function Post() {
             deserunt quibusdam blanditiis asperiores, saepe nihil?
           </motion.p>
 
-          <motion.div
-            className="grid grid-cols-1 gap-6 md:gap-8 mt-6 md:mt-14 mb-14"
-            variants={listItemContainerVariant}
-            initial="hidden"
-            animate="show"
-            exit="exit">
-            <AnimatePresence>
+          <div className="grid grid-cols-1 gap-6 md:gap-8 mt-6 md:mt-14 mb-14">
               {postData &&
                 postData.map((post, index) => (
                   <div key={index} className="px-2">
-                    <motion.div variants={listItemVariant} layout>
+                    <motion.div
+                      initial={{ opacity: 0, x: 100 }}
+                      whileInView={{
+                        opacity: 1,
+                        x: 0,
+                        transition: {
+                          type: "spring",
+                          duration: 1.5,
+                          delay: 0.3
+                        },
+                      }}
+                      exit={{
+                        opacity: 0,
+                        x: "100vw",
+                        transition: { ease: "easeInOut", duration: 0.8 },
+                      }}
+                      viewport={{ once: true }}>
                       <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
                         <div key={post.slug.current}>
                           <div className="flex flex-col md:flex-row">
@@ -172,8 +163,7 @@ export default function Post() {
                     </motion.div>
                   </div>
                 ))}
-            </AnimatePresence>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

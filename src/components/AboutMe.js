@@ -1,59 +1,13 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, AnimatePresence } from "framer-motion";
 import gear from "../assets/images/gear.png";
 import arrow from "../assets/images/arrow.png";
 
 export default function AboutMe() {
   const [authorData, setAuthorData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Animation
-  const { ref, inView } = useInView();
-  const [ref2, inView2] = useInView();
-  const animationConveyerBelt = useAnimation();
-  const animationConveyerBelt2 = useAnimation({
-    threshold: 0.8,
-  });
-  const animationExperienceTitle = useAnimation();
-
-  useEffect(() => {
-    console.log("Use effect hook, inview =", inView);
-    console.log("Use effect hook, inview2 =", inView2);
-    if (inView) {
-      animationConveyerBelt.start({
-        opacity: 1,
-        transition: { delay: 0.1, duration: 1.5 },
-      });
-    }
-    if (!inView) {
-      animationConveyerBelt.start({
-        opacity: 0,
-        transition: { duration: 0.5 },
-      });
-    }
-    if (inView2) {
-      animationConveyerBelt2.start({
-        opacity: 1,
-        transition: { delay: 0.2, duration: 1.5 },
-      });
-    }
-    if (!inView2) {
-      animationConveyerBelt2.start({
-        opacity: 0,
-        transition: { duration: 0.5 },
-      });
-    }
-  }, [
-    animationConveyerBelt,
-    animationConveyerBelt2,
-    inView,
-    inView2,
-    animationExperienceTitle,
-  ]);
-  // End of Animation
 
   useEffect(() => {
     setTimeout(() => {
@@ -75,22 +29,56 @@ export default function AboutMe() {
     };
   }, []);
 
+  // Animation
+  const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+
+  const HeadingContainer = {
+    initial: {
+      y: 0,
+    },
+    animate: {
+      y: 0,
+      transition: {
+        delayChildren: 0.05,
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const HeaderOne = {
+    initial: {
+      opacity: 0,
+      y: 50,
+    },
+    animate: { y: 0, opacity: 1, transition: { duration: 3, ...transition } },
+    exit: {
+      x: "100vw",
+      opacity: 0,
+      transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+    },
+  };
+  // End of animation
+
   console.log(authorData);
 
   if (!authorData.length < 0 || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "100vh"],
+            y: ["100vh", "0vh", "0vh", "130vh"],
             transition: {
               duration: 1.5,
-              ease: [0.25, 0.25, 0.13, 1],
+              ease: [0.25, 0.25, 0.25, 0.75],
             },
-          }}></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            About Me
+          </h1>
+        </motion.div>
       </div>
     );
   }
@@ -169,14 +157,52 @@ export default function AboutMe() {
         </div>
         {/* Conveyer belt title */}
         <motion.div
-          ref={ref}
-          animate={animationConveyerBelt}
-          initial={{ opacity: 0 }}>
-          <div className="w-full pl-[40px] pr-[25px] mt-8">
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { duration: 1 } }}
+          exit={{ opacity: 0 }}
+          viewport={{ once: true }}>
+          <div className="w-full pl-[40px] pr-[25px] mt-8 overflow-hidden">
             <div className="flex justify-between space-x-4">
-              <div className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[40px] lg:pl-[120px] font-DMSerifDisplay">
-                Tech Skills
-              </div>
+              {/* Heading Tech Skills */}
+              <motion.div
+                variants={HeadingContainer}
+                initial="initial"
+                whileInView="animate"
+                exit="exit"
+                viewport={{ once: true }}
+                className="text-[40px] md:text-[70px] lg:text-[92px] font-bold text-[#EABE7B] px-8 pl-0 md:pl-[40px] lg:pl-[120px] font-DMSerifDisplay">
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  T
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  e
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  c
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  h
+                </motion.span>
+                <span className="pl-[4.5px] md:pl-4"></span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  S
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  k
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  i
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  l
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  l
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  s
+                </motion.span>
+              </motion.div>
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ ease: "linear", duration: 5, repeat: Infinity }}
@@ -263,22 +289,82 @@ export default function AboutMe() {
 
         {/* Timeline */}
         <motion.div
-          className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8"
-          ref={ref2}
-          animate={animationConveyerBelt2}
-          initial={{ opacity: 0 }}>
-          <div className="text-[40px] md:text-[70px] lg:text-[92px] mb-4 font-bold text-[#EABE7B] font-DMSerifDisplay">
-            Experience
-          </div>
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { duration: 1 } }}
+          exit={{ opacity: 0 }}
+          viewport={{ once: true }}
+          className="w-full px-8 md:px-[70px] lg:px-[160px] mt-8 overflow-hidden">
+          {/* Heading Experience Title */}
+          <motion.div
+            variants={HeadingContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            exit="exit"
+            className="text-[40px] md:text-[70px] lg:text-[92px] mb-4 font-bold text-[#EABE7B] font-DMSerifDisplay">
+            <motion.span className="inline-block" variants={HeaderOne}>
+              E
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              x
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              p
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              e
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              r
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              i
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              e
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              n
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              c
+            </motion.span>
+            <motion.span className="inline-block" variants={HeaderOne}>
+              e
+            </motion.span>
+          </motion.div>
           <ol className="relative border-l-4 border-white">
             {authorData.experience &&
               authorData.experience.map((experience, index) => (
                 <li className="mb-10 ml-4" key={index}>
                   <div className="absolute w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-white rounded-full mt-0 -left-[23px] md:-left-[33px] border border-white text-white"></div>
-                  <div className="ml-4 md:ml-[40px] text-[30px] md:text-[56px] font-bold leading-none text-white font-DMSerifDisplay">
+                  <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{
+                      opacity: [0, 1],
+                      y: 0,
+                      transition: {
+                        duration: 1,
+                        ease: [0.43, 0.13, 0.23, 0.96],
+                      },
+                    }}
+                    viewport={{ once: true }}
+                    className="ml-4 md:ml-[40px] text-[30px] md:text-[56px] font-bold leading-none text-white font-DMSerifDisplay">
                     {experience.date}
-                  </div>
-                  <div className="mx-4 md:mx-[40px] mt-4 md:mt-8 bg-[#191919] p-4 rounded-md">
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 200 }}
+                    whileInView={{
+                      opacity: [0, 1],
+                      x: 0,
+                      transition: {
+                        duration: 1,
+                        delay: 0.5,
+                        ease: [0.43, 0.13, 0.23, 0.96],
+                      },
+                    }}
+                    viewport={{ once: true }}
+                    className="mx-4 md:mx-[40px] mt-4 md:mt-8 bg-[#191919] p-4 rounded-md">
                     <h3 className="text-2xl text-white font-DMSerifDisplay">
                       {experience.title}
                     </h3>
@@ -287,13 +373,12 @@ export default function AboutMe() {
                     </h3>
                     <div className="mt-4 mb-4 text-[16px] text-white font-DmSans">
                       <BlockContent
-                        className=""
                         blocks={experience.experience}
-                        projectId="22zf6zhh"
+                        projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
                         dataset="production"
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 </li>
               ))}
           </ol>

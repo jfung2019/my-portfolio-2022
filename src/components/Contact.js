@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import sanityClient from "../client.js";
-import BlockContent from "@sanity/block-content-to-react";
 import { motion, AnimatePresence } from "framer-motion";
 import sample from "../assets/svg/sample2.svg";
 import "../App.css";
@@ -64,28 +63,73 @@ export default function Contact() {
       .catch(console.error);
   }, []);
 
-  // console.log(authorData);
+  // Animation
+  const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+
+  const HeadingContainer = {
+    initial: {
+      y: 0,
+    },
+    animate: {
+      y: 0,
+      transition: {
+        delayChildren: 0.05,
+        staggerChildren: 0.02,
+      },
+    },
+  };
+
+  const HeaderOne = {
+    initial: {
+      opacity: 0,
+      y: 50,
+    },
+    animate: { y: 0, opacity: 1, transition: { duration: 3, ...transition } },
+    exit: {
+      x: "100vw",
+      opacity: 0,
+      transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+    },
+  };
+
+  const HeaderTwo = {
+    initial: {
+      opacity: 0,
+      y: 50,
+    },
+    animate: { y: 0, opacity: 1, transition: { duration: 3, ...transition } },
+    exit: {
+      x: "-100vw",
+      opacity: 0,
+      transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+    },
+  };
+  // End of Animation
 
   if (!authorData || loading === true) {
     return (
-      <div className="w-full h-screen absolute align-middle z-30">
+      <div className="w-full h-screen fixed align-middle z-30">
         <motion.div
           className="w-full h-screen absolute bg-[#EABE7B]"
           initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
           animate={{
             scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "100vh"],
+            y: ["100vh", "0vh", "0vh", "130vh"],
             transition: {
               duration: 1.5,
-              ease: [0.25, 0.25, 0.13, 1],
+              ease: [0.25, 0.25, 0.25, 0.75],
             },
-          }}></motion.div>
+          }}>
+          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+            Contact
+          </h1>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex text-white">
+    <div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex text-white overflow-hidden">
       <div className="m-auto">
         {/* Email Notification Toast for sucess on sending */}
         <AnimatePresence
@@ -127,45 +171,164 @@ export default function Contact() {
 
         <div className="flex flex-col">
           <div className="text-center w-full py-12 mt-0 md:mt-8">
-            <motion.div
-              initial={{ y: 100, scale: 0, x: -100 }}
-              animate={{
-                y: 0,
-                scale: 1,
-                x: [-400, 0],
-                transition: { duration: 0.5 },
-              }}
-              exit={{
-                y: 0,
-                scale: 0,
-                x: -500,
-                transition: { duration: 0.5, delay: 0.3 },
-              }}>
-              <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
-                That's enough about me,
-              </h1>
-              <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
-                Let's talk about you!
-              </h1>
+            <motion.div>
+              <motion.span
+                variants={HeadingContainer}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  T
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  h
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  a
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  t
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  '
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  s
+                </motion.span>
+                <span className="pl-[4.5px] md:pl-4"></span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  e
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  n
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  o
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  u
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  g
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  h
+                </motion.span>
+                <span className="pl-[4.5px] md:pl-4"></span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  a
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  b
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  o
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  u
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  t
+                </motion.span>
+                <span className="pl-[4.5px] md:pl-4"></span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  m
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  e
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderOne}>
+                  ,
+                </motion.span>
+              </motion.span>
+              <motion.h1
+                variants={HeadingContainer}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  L
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  e
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  t
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  '
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  s
+                </motion.span>
+                <motion.span
+                  className="inline-block pl-[4.5px] md:pl-4"
+                  variants={HeaderTwo}></motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  t
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  a
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  l
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  k
+                </motion.span>
+                <motion.span
+                  className="inline-block pl-[4.5px] md:pl-4"
+                  variants={HeaderTwo}></motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  a
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  b
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  o
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  u
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  t
+                </motion.span>
+                <motion.span
+                  className="inline-block pl-[4.5px] md:pl-4"
+                  variants={HeaderTwo}></motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  y
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  o
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  u
+                </motion.span>
+                <motion.span className="inline-block" variants={HeaderTwo}>
+                  !
+                </motion.span>
+              </motion.h1>
             </motion.div>
 
             <motion.form
               ref={form}
               onSubmit={sendEmail}
-              initial={{ y: 100, scale: 0, x: -100 }}
+              initial={{ y: 100, scale: 0 }}
               animate={{
                 y: 0,
                 scale: 1,
-                x: [-400, 0],
-                transition: { duration: 0.5 },
+                transition: { delay: 0.8, duration: 0.8 },
               }}
               exit={{
                 y: 0,
                 scale: 0,
-                x: -500,
                 transition: { duration: 0.5, delay: 0.3 },
               }}
-              className="px-4 md:px-0 mt-8 space-y-10">
+              className="px-4 md:px-8 mt-8 space-y-10">
               <div className="flex flex-col space-y-5 relative">
                 <input
                   required
@@ -215,22 +378,31 @@ export default function Contact() {
                 <button
                   type="submit"
                   value="Send"
-                  className="bg-gray-800 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B] hover:text-black-v1">
+                  className="bg-black-v1 rounded-lg w-full py-3 font-DMSerifDisplay hover:bg-[#EABE7B] hover:text-black-v1 transition-all duration-500">
                   Send
                 </button>
               </div>
             </motion.form>
           </div>
           <div className="w-full py-8 text-center">
-            <h1 className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
-              Or you can contact me directly
-            </h1>
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1, transition: { duration: 1 } }}
-              exit={{ scale: 0, transition: { duration: 0.5, delay: 0.5 } }}
-              className="w-full justify-center m-auto font-DMSerifDisplay order-first lg:order-last hidden md:flex">
-              <div className="relative">
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { duration: 2 } }}
+              exit={{ opacity: 0 }}
+              viewport={{ once: true }}
+              className="text-[32px] md:text-[40px] lg:text-[80px] font-bold text-[#EABE7B] font-DMSerifDisplay">
+              Or you can contact me directly
+            </motion.div>
+            <div className="w-full justify-center m-auto font-DMSerifDisplay order-first lg:order-last hidden md:flex">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{
+                  opacity: 1,
+                  transition: { delay: 0.3, duration: 2 },
+                }}
+                exit={{ opacity: 0 }}
+                viewport={{ once: true }}
+                className="relative">
                 <div>
                   <img
                     className="h-[700px] w-auto object-cover"
@@ -253,28 +425,34 @@ export default function Contact() {
                     </span>{" "}
                     or call me at{" "}
                     <span className="text-[#EABE7B]">
-                      <a href={`https://wa.me/852${authorData.phoneNumber}`} target="_blank" rel="noreferrer">
+                      <a
+                        href={`https://wa.me/852${authorData.phoneNumber}`}
+                        target="_blank"
+                        rel="noreferrer">
                         {authorData.phoneNumber}
                       </a>
                     </span>
                   </h1>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
             {/* only mobile without animated svg */}
             <div className="w-full mt-0 font-DMSerifDisplay order-first md:order-last block md:hidden">
               <div className="">
                 <h1 className="ml-8 text-[24px] font-DMSerifDisplay text-left mt-4">
-                  Don’t hesitate to contact me!
-                </h1>
-                <h1 className="ml-8 text-[24px] font-DMSerifDisplay text-left">
-                  {" "}
-                  If you wish to email me directly, please reach out to me via
-                  email at{" "}
-                  <span className="text-[#EABE7B]">{authorData.email}</span> or
-                  call me at{" "}
                   <span className="text-[#EABE7B]">
-                    {authorData.phoneNumber}
+                    <a href={`mailto: ${authorData.email}`}>
+                      {authorData.email}
+                    </a>
+                  </span>{" "}
+                  or call me at{" "}
+                  <span className="text-[#EABE7B]">
+                    <a
+                      href={`https://wa.me/852${authorData.phoneNumber}`}
+                      target="_blank"
+                      rel="noreferrer">
+                      {authorData.phoneNumber}
+                    </a>
                   </span>
                 </h1>
               </div>

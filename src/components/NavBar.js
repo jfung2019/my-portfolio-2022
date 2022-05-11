@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 export default function NavBar() {
   const [isOpen, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Close the navigation panel
+    setOpen(false); 
+  }, [pathname]);
 
   useEffect(() => {}, [isOpen]);
 
@@ -32,74 +38,78 @@ export default function NavBar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ y: "-100vh" }}
+              initial={{ x: "-100vw", borderRadius: 0, width: "150vw" }}
               animate={{
-                y: 0,
+                x: 0,
+                width: "100vw",
+                borderRadius: ["0", "20%", "20%", "0"],
                 transition: { ease: "linear", duration: 0.3 },
               }}
               exit={{
                 x: "-100vw",
+                borderRadius: 0,
                 transition: { ease: "linear", duration: 0.3 },
               }}
-              className="absolute w-full bg-[#191919] right-0 h-screen top-0 block md:hidden z-10">
-              <motion.div 
-                  initial={{y: 100, scale: 0, x: -100}}
-                  animate={{y: 0, scale: 1, x: [-400, 0], transition: {duration: 0.5}}}
-              className="absolute bottom-0 left-0 text-white mt-[50px] px-8 mb-[100px] flex flex-col">
+              className="absolute w-full bg-black-v1 right-0 h-screen top-0 block md:hidden z-10">
+              <motion.div
+                initial={{ y: 100, scale: 0, x: -100 }}
+                animate={{
+                  y: 0,
+                  scale: 1,
+                  x: [-400, 0],
+                  transition: { duration: 0.5 },
+                }}
+                className="absolute bottom-0 left-0 text-white mt-[50px] px-8 mb-[100px] flex flex-col">
                 <NavLink
-                  onClick={handleNavMenuToggle}
                   to="/"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   Home
                 </NavLink>
                 <NavLink
-                  onClick={handleNavMenuToggle}
                   to="/About"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   ABOUT ME
                 </NavLink>
                 <NavLink
-                  onClick={handleNavMenuToggle}
                   to="/Projects"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   PROJECTS
                 </NavLink>
                 <NavLink
-                  onClick={handleNavMenuToggle}
                   to="/Post"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   POST
                 </NavLink>
                 <NavLink
-                  onClick={handleNavMenuToggle}
                   to="/Contact"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   CONTACT
                 </NavLink>
               </motion.div>
-              {/* <div className="absolute top-0 right-0 text-white mt-[50px] px-8">
-              <button onClick={handleNavMenuToggle}>
-                <h1 className="text-left font-bold text-[24px] mt-[-20px]">
-                  Close
-                </h1>
-              </button>
-            </div> */}
             </motion.div>
           )}
         </AnimatePresence>
 
         <AnimateSharedLayout>
           <div className="hidden md:block">
-            <NavLink to="/About" className="p-0 md:p-4 text-white hover:text-gold">
+            <NavLink
+              to="/About"
+              className="p-0 md:p-4 text-white hover:text-gold">
               About
             </NavLink>
-            <NavLink to="/Projects" className="p-0 md:p-4 text-white hover:text-gold">
+            <NavLink
+              to="/Projects"
+              className="p-0 md:p-4 text-white hover:text-gold">
               Projects
             </NavLink>
-            <NavLink to="/Post" className="p-0 md:p-4 text-white hover:text-gold">
+            <NavLink
+              to="/Post"
+              className="p-0 md:p-4 text-white hover:text-gold">
               Blogs
             </NavLink>
-            <NavLink to="/Contact" className="p-0 md:p-4 text-white hover:text-gold">
+            <NavLink
+              to="/Contact"
+              className="p-0 md:p-4 text-white hover:text-gold">
               Contact
             </NavLink>
           </div>
