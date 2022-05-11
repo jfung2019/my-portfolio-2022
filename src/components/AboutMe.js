@@ -370,7 +370,7 @@ export default function AboutMe() {
                     <div className="mt-4 mb-4 text-[16px] text-white font-DmSans">
                       <BlockContent
                         blocks={experience.experience}
-                        projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
+                        projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
                         dataset="production"
                       />
                     </div>
