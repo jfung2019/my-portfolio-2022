@@ -204,7 +204,7 @@ export default function SingleProject() {
             <div className="font-DmSans text-white mt-1 md:mt-4">
               <BlockContent
                 blocks={singleProjectData.role}
-                projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+                projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
                 dataset="production"
               />
             </div>
@@ -236,7 +236,7 @@ export default function SingleProject() {
               <div className="font-DmSans text-white">
                 <BlockContent
                   blocks={singleProjectData.body}
-                  projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+                  projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
                   dataset="production"
                 />
               </div>
@@ -283,7 +283,7 @@ export default function SingleProject() {
                   <div className="mt-1 md:mt-4 font-DmSans">
                     <BlockContent
                       blocks={projectData.paragraph}
-                      projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+                      projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
                       dataset="production"
                     />
                   </div>
@@ -325,7 +325,7 @@ export default function SingleProject() {
               <div className="font-DmSans text-white">
                 <BlockContent
                   blocks={singleProjectData.conclusion}
-                  projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+                  projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
                   dataset="production"
                 />
               </div>

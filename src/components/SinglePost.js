@@ -85,7 +85,7 @@ export default function SinglePost() {
             <BlockContent
               className="prose md:prose-lg lg:prose-xl text-white prose-headings:font-DMSerifDisplay prose-headings:text-white max-w-none prose-img:max-w-xl"
               blocks={singlePostData.body}
-              projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+              projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
               dataset="production"
             />
           </div>

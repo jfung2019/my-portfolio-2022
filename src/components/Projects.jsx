@@ -139,7 +139,7 @@ export default function Projects() {
           className="font-DmSans text-white">
           <BlockContent
             blocks={authorData.bioForProjectPage}
-            projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+            projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
             dataset="production"
           />
         </motion.div>

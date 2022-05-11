@@ -122,7 +122,7 @@ export default function Post() {
             className="font-DmSans text-white">
             <BlockContent
               blocks={authorData.bioForBlogPage}
-              projectId={process.env.REACT_APP_SANITY_PROJECT_ID_DEVELOPMENT}
+              projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
               dataset="production"
             />
           </motion.p>
