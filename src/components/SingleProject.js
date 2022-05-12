@@ -274,7 +274,7 @@ export default function SingleProject() {
                 } ${
                   projectData.imageGalleryUrl !== undefined &&
                   !projectData.imageGalleryUrl.includes("")
-                    ? "lg:w-1/2 lg:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8"
+                    ? "lg:w-1/2 lg:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8 mb-8"
                     : "lg:w-full mx-0 py-0 lg:-py-8 mb-8"
                 }`}>
                 <div className="m-auto">
