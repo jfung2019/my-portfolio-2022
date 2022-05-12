@@ -47,6 +47,7 @@ export default function SingleProject() {
       .catch(console.error);
   }, [slug]);
 
+  console.log(singleProjectData)
   if (!singleProjectData || loading === true) {
     return (
       <div className="w-full h-screen fixed align-middle z-30">
@@ -150,7 +151,7 @@ export default function SingleProject() {
                   )}
 
                   {/* code url */}
-                  {singleProjectData.demoUrl != null && (
+                  {singleProjectData.codeUrl != null && (
                     <a
                       className="mr-2 bg-black-v1 rounded-[30px] py-1 px-4 hover:bg-gold hover:text-black-v1 font-DMSerifDisplay"
                       href={singleProjectData.codeUrl}>
