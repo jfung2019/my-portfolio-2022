@@ -144,7 +144,9 @@ export default function SingleProject() {
                   {singleProjectData.demoUrl != null && (
                     <a
                       className="mr-2 bg-black-v1 rounded-[30px] py-1 px-4 hover:bg-gold hover:text-black-v1 font-DMSerifDisplay"
-                      href={singleProjectData.demoUrl}>
+                      href={singleProjectData.demoUrl}
+                      target="_blank"
+                      rel="noreferrer">
                       Demo
                     </a>
                   )}
@@ -153,7 +155,10 @@ export default function SingleProject() {
                   {singleProjectData.codeUrl != null && (
                     <a
                       className="mr-2 bg-black-v1 rounded-[30px] py-1 px-4 hover:bg-gold hover:text-black-v1 font-DMSerifDisplay"
-                      href={singleProjectData.codeUrl}>
+                      href={singleProjectData.codeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      >
                       Git Hub
                     </a>
                   )}
