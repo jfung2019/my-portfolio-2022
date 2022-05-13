@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import BlockContent from "@sanity/block-content-to-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import gear from "../assets/images/gear.png";
 import arrow from "../assets/images/arrow.png";
 
