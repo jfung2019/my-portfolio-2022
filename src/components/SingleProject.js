@@ -47,7 +47,6 @@ export default function SingleProject() {
       .catch(console.error);
   }, [slug]);
 
-  console.log(singleProjectData)
   if (!singleProjectData || loading === true) {
     return (
       <div className="w-full h-screen fixed align-middle z-30">
@@ -231,15 +230,17 @@ export default function SingleProject() {
           }}
           viewport={{ once: true }}
           className="w-full text-white mt-8 mb-8 lg:mb-[200px]">
-          <h1 className="font-DMSerifDisplay text-[24px]">Background</h1>
           {singleProjectData.body != null && (
-            <div className="flex flex-wrap w-full mt-1 md:mt-4">
-              <div className="font-DmSans text-white">
-                <BlockContent
-                  blocks={singleProjectData.body}
-                  projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
-                  dataset="production"
-                />
+            <div>
+              <h1 className="font-DMSerifDisplay text-[24px]">Background</h1>
+              <div className="flex flex-wrap w-full mt-1 md:mt-4">
+                <div className="font-DmSans text-white">
+                  <BlockContent
+                    blocks={singleProjectData.body}
+                    projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
+                    dataset="production"
+                  />
+                </div>
               </div>
             </div>
           )}
@@ -261,7 +262,7 @@ export default function SingleProject() {
               viewport={{ once: true }}
               key={id}
               className={`w-full flex flex-col lg:flex-row ${
-                projectData.imageGalleryUrl !== undefined &&
+                typeof projectData.imageGalleryUrl !== "undefined" &&
                 !projectData.imageGalleryUrl.includes("")
                   ? "h-[550px] md:h-[550px] lg:h-[450px] my-0 md:my-8 lg:my-24"
                   : "mt-8"
@@ -272,10 +273,12 @@ export default function SingleProject() {
                     ? "order-last lg:order-first"
                     : "order-last lg:order-last"
                 } ${
-                  projectData.imageGalleryUrl !== undefined &&
+                  typeof projectData.imageGalleryUrl !== "undefined" &&
                   !projectData.imageGalleryUrl.includes("")
                     ? "lg:w-1/2 lg:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8 mb-8"
-                    : "lg:w-full mx-0 py-0 lg:-py-8 mb-8"
+                    : "lg:w-full py-0 lg:-py-8 mb-8"
+
+                  // good w-full rounded-lg order-last lg:order-last lg:w-full py-0 lg:-py-8 mb-8
                 }`}>
                 <div className="m-auto">
                   <h1 className="font-DMSerifDisplay text-[24px]">
@@ -290,20 +293,24 @@ export default function SingleProject() {
                   </div>
                 </div>
               </div>
-              {!projectData.imageGalleryUrl.includes("") && (
-                <div
-                  className={`w-auto lg:w-1/2 m-auto rounded-lg order-first ${
-                    (id + 1) % 2
-                      ? "order-first lg:order-last"
-                      : "order-first lg:order-first"
-                  }`}>
-                  <img
-                    className="bg-[#4b4a4a] p-1 rounded-lg max-h-[400px]"
-                    src={projectData.imageGalleryUrl}
-                    alt={projectData.imageGalleryUrl}
-                  />
-                </div>
-              )}
+              {typeof projectData.imageGalleryUrl !== "undefined" &&
+                !projectData.imageGalleryUrl.includes("") && (
+                  <div
+                    className={`w-auto lg:w-1/2 m-auto rounded-lg order-first ${
+                      (id + 1) % 2
+                        ? "order-first lg:order-last"
+                        : "order-first lg:order-first"
+                    }`}>
+                    {/* {typeof projectData.imageGalleryUrl !== "undefined" && !projectData.imageGalleryUrl.includes("")
+                    ? "have image"
+                    : "no image"} */}
+                    <img
+                      className="bg-[#4b4a4a] p-1 rounded-lg max-h-[400px]"
+                      src={projectData.imageGalleryUrl}
+                      alt={projectData.imageGalleryUrl}
+                    />
+                  </div>
+                )}
             </motion.div>
           ))}
 
