@@ -49,7 +49,7 @@ export default function SinglePost() {
               ease: [0.25, 0.25, 0.25, 0.75],
             },
           }}>
-          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
             Blog Post
           </h1>
         </motion.div>

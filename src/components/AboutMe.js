@@ -73,7 +73,7 @@ export default function AboutMe() {
               ease: [0.25, 0.25, 0.25, 0.75],
             },
           }}>
-          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
             About Me
           </h1>
         </motion.div>
@@ -253,24 +253,22 @@ export default function AboutMe() {
             </div>
             {/* conveyer belt 2 bellow */}
             <div className="w-full border-t-4 border-b-4 border-gray-200 py-2 md:py-5">
-              <AnimatePresence>
-                <motion.div
-                  className="min-w-min flex space-x-1 md:space-x-4"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "100%" }}
-                  transition={{ ease: "linear", duration: 30, loop: Infinity }}>
-                  {authorData.techSkills.map((techSkills, index) => (
-                    <div key={index}>
-                      <img
-                        loading="lazy"
-                        className="object-cover h-auto w-[150px] min-w-[45px]"
-                        src={techSkills}
-                        alt="techSkills"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+              <motion.div
+                className="min-w-min flex space-x-1 md:space-x-4"
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ ease: "linear", duration: 30, loop: Infinity }}>
+                {authorData.techSkills.map((techSkills, index) => (
+                  <div key={index}>
+                    <img
+                      loading="lazy"
+                      className="object-cover h-auto w-[150px] min-w-[45px]"
+                      src={techSkills}
+                      alt="techSkills"
+                    />
+                  </div>
+                ))}
+              </motion.div>
             </div>
             <div className="w-full flex justify-end">
               <motion.div

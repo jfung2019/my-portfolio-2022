@@ -61,7 +61,7 @@ export default function SingleProject() {
               ease: [0.25, 0.25, 0.25, 0.75],
             },
           }}>
-          <h1 className="text-white absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] font-bold">
+          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
             Project Post
           </h1>
         </motion.div>
@@ -157,8 +157,7 @@ export default function SingleProject() {
                       className="mr-2 bg-black-v1 rounded-[30px] py-1 px-4 hover:bg-gold hover:text-black-v1 font-DMSerifDisplay"
                       href={singleProjectData.codeUrl}
                       target="_blank"
-                      rel="noreferrer"
-                      >
+                      rel="noreferrer">
                       Git Hub
                     </a>
                   )}
