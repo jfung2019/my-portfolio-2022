@@ -266,6 +266,16 @@ export default function Projects() {
                     </Link>
 
                     <div className="space-x-2 pt-2 mb-4">
+                      {project.demoUrl === null && project.codeUrl === null ? (
+                        <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
+                          <a
+                            href={/projects/ + project.slug.current}
+                            target="_blank"
+                            rel="noreferrer">
+                            Learn More
+                          </a>
+                        </button>
+                      ) : null}
                       {project.demoUrl !== null ? (
                         <button className="bg-[#202020] rounded-[30px] py-1 px-4 mt-2 text-white font-DMSerifDisplay hover:bg-[#eabe7b] hover:text-black-v1">
                           <a
