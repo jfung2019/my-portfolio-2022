@@ -228,7 +228,7 @@ export default function Projects() {
                 key={index}
                 className="px-2">
                 <div>
-                  <div className="bg-[#191919] px-6 py-4 rounded-[30px]">
+                  <div className="bg-[#191919] px-[15px] md:px-8 py-4 rounded-[30px]">
                     <Link
                       to={/projects/ + project.slug.current}
                       key={project.slug.current}>

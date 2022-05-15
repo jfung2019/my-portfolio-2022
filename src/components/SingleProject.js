@@ -184,7 +184,7 @@ export default function SingleProject() {
         </div>
 
         {/* role */}
-        {singleProjectData.role != null && (
+        {singleProjectData.role !== null && (
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{
@@ -233,7 +233,7 @@ export default function SingleProject() {
           }}
           viewport={{ once: true }}
           className="w-full text-white mt-8 mb-8 lg:mb-[200px]">
-          {singleProjectData.body != null && (
+          {singleProjectData.body !== null && (
             <div>
               <h1 className="font-DMSerifDisplay text-[24px]">Background</h1>
               <div className="flex flex-wrap w-full mt-1 md:mt-4">
@@ -249,7 +249,7 @@ export default function SingleProject() {
           )}
         </motion.div>
 
-        {singleProjectData.projectData != null &&
+        {singleProjectData.projectData !== null &&
           singleProjectData.projectData.map((projectData, id) => (
             <motion.div
               initial={{ opacity: 0, x: (id + 1) % 2 ? 100 : -100 }}
@@ -288,11 +288,13 @@ export default function SingleProject() {
                     {projectData.title}
                   </h1>
                   <div className="mt-1 md:mt-4 font-DmSans">
-                    <BlockContent
-                      blocks={projectData.paragraph}
-                      projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
-                      dataset="production"
-                    />
+                    {projectData.paragraph !== null && (
+                      <BlockContent
+                        blocks={projectData.paragraph}
+                        projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
+                        dataset="production"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -319,7 +321,7 @@ export default function SingleProject() {
           ))}
 
         {/* Conclusion */}
-        {singleProjectData.conclusion != null && (
+        {singleProjectData.conclusion !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{
