@@ -14,7 +14,6 @@ export default function SingleProject() {
       setLoading(false);
     }, 1500);
 
-    // forced to start at top when loaded at first
     window.scrollTo(0, 0);
 
     sanityClient
@@ -266,10 +265,11 @@ export default function SingleProject() {
               viewport={{ once: true }}
               key={id}
               className={`w-full flex flex-col lg:flex-row ${
-                typeof projectData.paragraph === "undefined" ? 'min-h-[300px] my-0 md:my-8 lg:my-24' : 
-                typeof projectData.imageGalleryUrl !== "undefined" &&
-                !projectData.imageGalleryUrl.includes("")
-                  ? "h-[550px] md:h-[550px] lg:h-[450px] my-0 md:my-8 lg:my-24"
+                typeof projectData.paragraph === "undefined"
+                  ? "min-h-[300px] md:h-[550px] lg:h-[450px] my-0 md:my-8 lg:my-24 gap-4 md:gap-0"
+                  : typeof projectData.imageGalleryUrl !== "undefined" &&
+                    !projectData.imageGalleryUrl.includes("")
+                  ? "h-[500px] md:h-[550px] lg:h-[450px] my-0 md:my-8 lg:my-24"
                   : "mt-8"
               } text-white`}>
               <div
@@ -282,8 +282,6 @@ export default function SingleProject() {
                   !projectData.imageGalleryUrl.includes("")
                     ? "lg:w-1/2 md:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8 mb-8"
                     : "lg:w-full py-0 lg:-py-8 mb-8 "
-
-                  // good w-full rounded-lg order-last lg:order-last lg:w-full py-0 lg:-py-8 mb-8
                 }`}>
                 <div className="">
                   <h1 className="font-DMSerifDisplay text-[24px]">
