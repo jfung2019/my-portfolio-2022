@@ -309,7 +309,7 @@ export default function SingleProject() {
                     {/* {typeof projectData.imageGalleryUrl !== "undefined" && !projectData.imageGalleryUrl.includes("")
                     ? "have image"
                     : "no image"} */}
-                    {typeof projectData.paragraph === "undefined" ? '300' : '550'}
+                    {/* {typeof projectData.paragraph === "undefined" ? '300' : '550'} */}
                     <img
                       className="bg-[#4b4a4a] p-1 rounded-lg max-h-[400px]"
                       src={projectData.imageGalleryUrl}
