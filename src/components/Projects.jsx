@@ -225,6 +225,7 @@ export default function Projects() {
                   x: "100vw",
                   transition: { ease: "easeInOut", duration: 0.8 },
                 }}
+                viewport={{ once: true }}
                 key={index}
                 className="px-2">
                 <div>
