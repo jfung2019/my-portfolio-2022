@@ -266,6 +266,7 @@ export default function SingleProject() {
               viewport={{ once: true }}
               key={id}
               className={`w-full flex flex-col lg:flex-row ${
+                typeof projectData.paragraph === "undefined" ? 'min-h-[300px] my-0 md:my-8 lg:my-24' : 
                 typeof projectData.imageGalleryUrl !== "undefined" &&
                 !projectData.imageGalleryUrl.includes("")
                   ? "h-[550px] md:h-[550px] lg:h-[450px] my-0 md:my-8 lg:my-24"
@@ -279,12 +280,12 @@ export default function SingleProject() {
                 } ${
                   typeof projectData.imageGalleryUrl !== "undefined" &&
                   !projectData.imageGalleryUrl.includes("")
-                    ? "lg:w-1/2 lg:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8 mb-8"
-                    : "lg:w-full py-0 lg:-py-8 mb-8"
+                    ? "lg:w-1/2 md:my-auto mx-0 lg:mx-8 px-0 lg:px-4 py-0 lg:py-8 mb-8"
+                    : "lg:w-full py-0 lg:-py-8 mb-8 "
 
                   // good w-full rounded-lg order-last lg:order-last lg:w-full py-0 lg:-py-8 mb-8
                 }`}>
-                <div className="m-auto">
+                <div className="">
                   <h1 className="font-DMSerifDisplay text-[24px]">
                     {projectData.title}
                   </h1>
@@ -308,6 +309,7 @@ export default function SingleProject() {
                     {/* {typeof projectData.imageGalleryUrl !== "undefined" && !projectData.imageGalleryUrl.includes("")
                     ? "have image"
                     : "no image"} */}
+                    {typeof projectData.paragraph === "undefined" ? '300' : '550'}
                     <img
                       className="bg-[#4b4a4a] p-1 rounded-lg max-h-[400px]"
                       src={projectData.imageGalleryUrl}
