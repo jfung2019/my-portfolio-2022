@@ -100,7 +100,7 @@ export default function Projects() {
   return (
     <div className="px-8 md:px-[60px] lg:px-[160px] relative overflow-hidden">
       {/* Scroll down arrow helpers */}
-      <div className="absolute text-white top-[35%] right-[-60px] md:right-[-40px] hidden md:block">
+      {/* <div className="fixed text-white top-[55%] right-[-60px] md:right-[-40px] hidden md:block">
         <div className="flex space-x-4 rotate-90">
           <div className="font-DmSans">Scroll down</div>
           <motion.div
@@ -115,7 +115,7 @@ export default function Projects() {
             <img src={arrow} alt="arrow" />
           </motion.div>
         </div>
-      </div>
+      </div> */}
       <div>
         <motion.h1
           initial={{ x: 100, opacity: 0 }}
@@ -213,7 +213,7 @@ export default function Projects() {
           </button>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-14 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-14 mb-14">
           {projectData &&
             projectData.map((project, index) => (
               <motion.div
@@ -229,7 +229,7 @@ export default function Projects() {
                 key={index}
                 className="px-2">
                 <div>
-                  <div className="bg-[#191919] px-[15px] md:px-8 py-4 rounded-[30px]">
+                  <div className="bg-[#191919] px-4 md:px-8 py-4 rounded-[30px]">
                     <Link
                       to={/projects/ + project.slug.current}
                       key={project.slug.current}>
