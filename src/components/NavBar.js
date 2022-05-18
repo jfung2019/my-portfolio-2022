@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function NavBar() {
   const [isOpen, setOpen] = useState(false);
@@ -11,14 +11,21 @@ export default function NavBar() {
     setOpen(false);
   }, [pathname]);
 
-  useEffect(() => {}, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
 
   const handleNavMenuToggle = () => {
     setOpen(!isOpen);
   };
 
   return (
-    <header>
+    <div>
       <motion.div className="px-8 md:px-[80px] lg:px-[160px] bg-general-black flex flex-wrap justify-between items-center mx-auto py-8 font-DMSerifDisplay">
         <div className="z-20">
           <a href="/" className="flex items-center">
@@ -90,31 +97,28 @@ export default function NavBar() {
           )}
         </AnimatePresence>
 
-        <AnimateSharedLayout>
-          <div className="hidden md:block">
-            <NavLink
-              to="/About"
-              className="p-0 md:p-4 text-white hover:text-gold">
-              About
-            </NavLink>
-            <NavLink
-              to="/Projects"
-              className="p-0 md:p-4 text-white hover:text-gold">
-              Projects
-            </NavLink>
-            <NavLink
-              to="/Post"
-              className="p-0 md:p-4 text-white hover:text-gold">
-              Blogs
-            </NavLink>
-            <NavLink
-              to="/Contact"
-              className="p-0 md:p-4 text-white hover:text-gold">
-              Contact
-            </NavLink>
-          </div>
-        </AnimateSharedLayout>
+        {/* Desktop Menu */}
+        <div className="hidden md:block">
+          <NavLink
+            to="/About"
+            className="p-0 md:p-4 text-white hover:text-gold">
+            About
+          </NavLink>
+          <NavLink
+            to="/Projects"
+            className="p-0 md:p-4 text-white hover:text-gold">
+            Projects
+          </NavLink>
+          <NavLink to="/Post" className="p-0 md:p-4 text-white hover:text-gold">
+            Blogs
+          </NavLink>
+          <NavLink
+            to="/Contact"
+            className="p-0 md:p-4 text-white hover:text-gold">
+            Contact
+          </NavLink>
+        </div>
       </motion.div>
-    </header>
+    </div>
   );
 }
