@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
 import { motion } from "framer-motion";
-import arrow from "../assets/images/arrow.png";
 import BlockContent from "@sanity/block-content-to-react";
 
 export default function Projects() {
@@ -99,23 +98,6 @@ export default function Projects() {
 
   return (
     <div className="px-8 md:px-[60px] lg:px-[160px] relative overflow-hidden">
-      {/* Scroll down arrow helpers */}
-      {/* <div className="fixed text-white top-[55%] right-[-60px] md:right-[-40px] hidden md:block">
-        <div className="flex space-x-4 rotate-90">
-          <div className="font-DmSans">Scroll down</div>
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: 30 }}
-            transition={{
-              type: "Tween",
-              stiffness: 15,
-              duration: 1,
-              repeat: Infinity,
-            }}>
-            <img src={arrow} alt="arrow" />
-          </motion.div>
-        </div>
-      </div> */}
       <div>
         <motion.h1
           initial={{ x: 100, opacity: 0 }}
