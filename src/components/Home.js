@@ -236,7 +236,7 @@ export default function Home() {
               )}
 
               <div className="text-sm md:text-[24px] px-4 py-3 font-DMSerifDisplay rounded-[30px] bg-black-v1 hover:bg-gold hover:text-black-v1 transition-all duration-400">
-                <a href="/projects">See my works</a>
+                <a href="/projects">See my work</a>
               </div>
 
               {authorData.recomendationLetter !== null && (
