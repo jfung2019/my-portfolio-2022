@@ -83,7 +83,7 @@ export default function SinglePost() {
         <div className="w-full flex justify-center text-white font-DmSans mt-8">
           <div className="mb-24">
             <BlockContent
-              className="prose md:prose-lg lg:prose-xl text-white prose-headings:font-DMSerifDisplay prose-headings:text-white max-w-none prose-img:max-w-xl"
+              className="prose md:prose-lg prose-red-a lg:prose-xl text-white prose-headings:font-DMSerifDisplay prose-headings:text-white max-w-none prose-img:max-w-xl"
               blocks={singlePostData.body}
               projectId={process.env.REACT_APP_SANITY_PROJECT_ID}
               dataset="production"

@@ -4,6 +4,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      typography: {
+        'red-a': {
+          css: {
+            a: {
+              color: '#FFFF00',
+            },
+          },
+        },
+      },
       // Some useful comment
       fontFamily: {
         'DMSerifDisplay': ['DM Serif Display', 'serif'],

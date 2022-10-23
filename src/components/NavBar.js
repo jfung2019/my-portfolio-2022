@@ -82,11 +82,11 @@ export default function NavBar() {
                   className="text-left font-bold text-[54px] hover:text-gold">
                   PROJECTS
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/Post"
                   className="text-left font-bold text-[54px] hover:text-gold">
                   POST
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   to="/Contact"
                   className="text-left font-bold text-[54px] hover:text-gold">
@@ -109,9 +109,9 @@ export default function NavBar() {
             className="p-0 md:p-4 text-white hover:text-gold">
             Projects
           </NavLink>
-          <NavLink to="/Post" className="p-0 md:p-4 text-white hover:text-gold">
+          {/* <NavLink to="/Post" className="p-0 md:p-4 text-white hover:text-gold">
             Blogs
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/Contact"
             className="p-0 md:p-4 text-white hover:text-gold">
