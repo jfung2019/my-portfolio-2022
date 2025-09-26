@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from "../client";
 import { motion } from "framer-motion";
+import LoadingScreen from "./LoadingScreen";
 
 export default function Home() {
   const [authorData, setAuthorData] = useState(null);
@@ -44,34 +45,13 @@ export default function Home() {
             bio,
             "authorImage": image.asset-> url
           }
-        `
+                    `
       )
       .then(data => setAuthorData(data[0]))
       .catch(console.error);
   }, []);
-
   if (!authorData || loading === true) {
-    return (
-      <div className="w-full h-screen fixed align-middle z-30">
-        <motion.div
-          className="w-full h-screen absolute bg-[#EABE7B]"
-          initial={{ scaleY: 1.5, y: "100vh", opacity: 1 }}
-          animate={{
-            scaleY: 1.5,
-            y: ["100vh", "0vh", "0vh", "0vh"],
-            opacity: [1, 1, 1, 1, 0],
-            transition: {
-              duration: 2,
-              ease: "easeInOut",
-              times: [0, 0.5, 0.3, 1.2],
-            },
-          }}>
-          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
-            Home
-          </h1>
-        </motion.div>
-      </div>
-    );
+    return <LoadingScreen text="Welcome" show={loading} />;
   }
 
   return (

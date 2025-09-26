@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
 import { motion } from "framer-motion";
+import LoadingScreen from "./LoadingScreen";
 import BlockContent from "@sanity/block-content-to-react";
 
 export default function Projects() {
@@ -75,25 +76,7 @@ export default function Projects() {
   };
 
   if (!projectData || loading === true) {
-    return (
-      <div className="w-full h-screen fixed align-middle z-30">
-        <motion.div
-          className="w-full h-screen absolute bg-[#EABE7B]"
-          initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
-          animate={{
-            scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "130vh"],
-            transition: {
-              duration: 1.5,
-              ease: [0.25, 0.25, 0.25, 0.75],
-            },
-          }}>
-          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
-            Projects
-          </h1>
-        </motion.div>
-      </div>
-    );
+    return <LoadingScreen text="Projects" show={loading} />;
   }
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import sanityClient from "../client.js";
 import { motion, AnimatePresence } from "framer-motion";
+import LoadingScreen from "./LoadingScreen";
 import sample from "../assets/svg/sample2.svg";
 import "../App.css";
 
@@ -107,25 +108,7 @@ export default function Contact() {
   // End of Animation
 
   if (!authorData || loading === true) {
-    return (
-      <div className="w-full h-screen fixed align-middle z-30">
-        <motion.div
-          className="w-full h-screen absolute bg-[#EABE7B]"
-          initial={{ scaleY: 1.3, y: "100vh", opacity: 1 }}
-          animate={{
-            scaleY: 1.3,
-            y: ["100vh", "0vh", "0vh", "130vh"],
-            transition: {
-              duration: 1.5,
-              ease: [0.25, 0.25, 0.25, 0.75],
-            },
-          }}>
-          <h1 className="text-black-v1 absolute w-full h-full flex items-center justify-center top-[-80px] font-DMSerifDisplay text-[32px] lg:text-[40px] font-bold">
-            Contact
-          </h1>
-        </motion.div>
-      </div>
-    );
+    return <LoadingScreen text="Contact" show={loading} />;
   }
 
   return (
