@@ -22,7 +22,7 @@ export default function Projects() {
 
     sanityClient
       .fetch(
-        `*[_type == "project" && "${filter}" in categories[]->title] | order(publishedAt desc)
+        `*[_type == "project" && "${filter}" in categories[]->title] | order(isFeatured asc,publishedAt desc)
         {
           "categories": categories[]->title,
           title,
